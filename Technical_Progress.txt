@@ -1,0 +1,24 @@
+Please outline all technical progress in the form of this template:
+=========================================
+TEMPLATE
+=========================================
+
+Topic
+- task that needs to get done
+    - subtask
+        - sub-subtask
+    + completed subtask
+    x subtask that does not need to be completed anymore
+    # comments
++ task that was completed
+    + completed subtask
+    + completed subtask
+    # comments
+x task that no longer requires completion
+
+=========================================
+
+7/13/2021
+
++ began technical documentation
+- learn how to use git properly
