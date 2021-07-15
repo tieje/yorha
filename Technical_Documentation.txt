@@ -15,10 +15,27 @@ DevOps
         Version Control - Git
         Docker
 Backend
-
+    Introduction
+        Get the core started. We can always add things later.
+    Building the Core
+    Features to Build
+        Algorithm for returning search results data
+        Returning randomly returning text-based adventures
+        Setting email Verification, possibly with Sendgrid
+        Security
 Frontend
+    Introduction
+        Build Components
+    Building the Core
+    Features to Build
+        Archetype Settings
+        Proximity Settings
+        Results Box
+        ChatApp Box
 
+======================================================
 Introduction
+======================================================
 
 PLEASE READ THIS
 
@@ -32,11 +49,16 @@ DevOps - Setting Up
 General Idea for Feedback Loop
 ------------------------------------------------------
 
-The feedback loop is being able to see your changes in real time on the intended device.
+The feedback loop is being able to see your changes on the intended device.
 
-1. Host a local version of the site from your local network such that
-anyone with access to your Wifi can open the site on their smartphone.
-2. It's possible to use Android Studio to set up a phone simulation but that's up to you.
+Apparently, you can use the Chrome DevTools Device Simulation
+
+Right-click > Inspect > upper-left corner, click on toggle device to change the viewport for mobile.
+
+Google's mobile-friendly test tool
+https://search.google.com/test/mobile-friendly
+
+It's possible to use Android Studio to set up a phone simulation but that's up to you.
 Phone simulation uses a ton of processing power and is therefore slow to start, even for high-end computers.
 
 ------------------------------------------------------
@@ -45,24 +67,24 @@ Version Control - Git
 
 https://www.robinwieruch.de/git-team-workflow
 
-main
-
-When building begins, a staging branch will be added.
-Many smaller feature branches will be created whenever a feature will be added.
+There are two main branches: staging and main.
+There are many smaller feature branches.
 These smaller feature branches will always merge with the staging branch.
 Features include small changes and bug fixes.
-It is only when a product is ready to be released, that the staging branch will merge with 
+It is only when a product is ready to be released, that the staging branch will merge with the main branch.
 
 main (The final release or the actual product)
 staging (the most updated version of the application)
 features (temporary, meant to be merged with staging)
 
 1. Either create a new feature branch or check out an available branch
+
     git checkout -b <branch_name>
         When you're creating a new feature branch, please prefix it with "feat-". For example,
             feat-<your_feature_branch_name>
             feat-my_feet
             feat-technical-docs
+
     git checkout <branch_name>
 
     "git fetch" stuff below
@@ -91,7 +113,7 @@ features (temporary, meant to be merged with staging)
     git commit -m "<commit_message>"
     git push origin <branch_name>
 
-    tip: "git add -u" can be used to move all changed files staging, excluding new files.
+    tip: "git add -u" can be used to move all changed files to the staging branch, excluding new files.
 
 4. Repeat step 3 until you're ready to merge the feature with the staging branching.
 
@@ -123,22 +145,146 @@ git push origin <your_feature_branch>
 Docker
 ------------------------------------------------------
 
-TODO: teach peeps how to use docker
-- brief introduction to docker
-- docker run commands
-- docker images
-- dockerfile explanation
-- docker-compose file explanation
-- set up your volumes folder for locally stored data
-- docker-compose command
+TL:DR;
 
-- Thomas needs to create a dockerfile and docker-compose.yml file that sets up a web page that is accessible on a local network.
-
-TL:DR; use "docker-compose up -d" to run the container.
+Use "docker-compose up -d" to run the container.
 Use "docker-compose exec [your installation command]" whenever you need to install a new package/module.
 For example:
     docker-compose exec sudo pipenv install ipython
-Use "docker-compose down" when you want to reset your container such as when you install a new package OR
+Use "docker-compose down" when you want to destroy your container such as when you install a new package OR
 when you're done for the day
 Use "docker-compose up -d --build" after you install a new package so it exists in your container.
 
+
+Brief Introduction to Docker
+
+https://www.youtube.com/watch?v=Gjnup-PuquQ
+
+Install Docker
+
+    Apple Silicon
+    https://docs.docker.com/docker-for-mac/apple-silicon/
+
+    Windows (works for Home version now. It used to be that only Windows Pro version worked.)
+    https://docs.docker.com/docker-for-windows/install/
+    https://www.docker.com/blog/docker-desktop-for-windows-home-is-here/
+
+General Docker Steps
+
+1. Pull or create a Docker image. Usually you'll want to pull an existing image:
+https://hub.docker.com/search?q=&type=image&image_filter=official
+
+2. Once you have an image, theoretically, you could use a docker run command to run that image.
+
+    Template:
+        docker run --name=[image_name] -d [base image]:[tag of the version]
+    Example:
+        For running a mysql server:
+        docker run --name=yorha -d mysql/mysql-server:latest
+
+3. "Dockerfile" and "docker-compose.yml" files. Think of them as the "Makefiles" of docker
+    
+    a. The "Dockerfile" (no extension) is a collection "docker image" commands that are used to build the image.
+
+    b. The "docker-compose.yml" file is a collection of "docker run" commands that are used to run images in containers.
+
+    There might be multiple Dockerfiles, such as one for the backend and one for the frontend.
+    But there only ever needs to be one docker-compose.yml file to run both of these images.
+
+    When the Dockerfile and docker-compose.yml files are present,
+    you can use the "docker-compose up -d" command to build the images and run these images in separate containers.
+
+    flag
+
+    -d          means to run this container detached. Detached as in,
+                so the container will run on its on terminal and not from the one you're currently using.
+    --build     means to rebuild the image. You must rebuild the image after installing new packages to maintain changes.
+                You can install new packages with the "docker-compose exec [command to install package]" command.
+
+
+    To shutdown your containers, such as whenever you want to rebuild your images, run:
+
+    docker-compose down
+
+    All data stored on these images will be lost.
+    Therefore, in order to save your data across images,
+    you must save it locally on your machine by defining a volume location in the docker-compose.yml file.
+
+    For example:
+
+services:
+  volumes:
+    postgres_data:
+  db:
+    image: postgis/postgis
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=taliyah
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    
+    Under volumes, the name of the host source container is postgres_data.
+    Under db, volumes appears again to define the data storage destination for the container.
+    This will be where the data will be stored on your local machine.
+    ###### If you're using windows, you'll obviously want to change this storage path. ######
+
+    We need a volume within the db service and a volume outside of the db service so that
+    this data is available to multiple services. For example, what if we wanted a container
+    to backup the data of the volume.
+
+======================================================
+Backend
+======================================================
+
+------------------------------------------------------
+Introduction
+------------------------------------------------------
+
+Please read DevOps before reading this section.
+
+The following steps are in order using the plus/minus format.
+"-" means that this task is incomplete
+"+" means that this task is complete
+"#" means that this line is a tip on how to complete the task
+
+The steps in the next section will be used to build the Backend core.
+Building the core means having something that generally works and can have features added to it later.
+
+------------------------------------------------------
+Building the Core
+------------------------------------------------------
+
+3/15/2021
+TODO: Copy and paste and your steps for building the Backend Core
+
+------------------------------------------------------
+Features to Build and How to Build them
+------------------------------------------------------
+
+======================================================
+Frontend
+======================================================
+
+------------------------------------------------------
+Introduction
+------------------------------------------------------
+
+Please read DevOps before reading this section.
+
+The following steps are in order using the plus/minus format.
+"-" means that this task is incomplete
+"+" means that this task is complete
+"#" means that this line is a tip on how to complete the task
+
+The steps in the next section will be used to build the Backend core.
+Building the core means having something that generally works and can have features added to it later.
+
+------------------------------------------------------
+Building the Core
+------------------------------------------------------
+
+
+
+------------------------------------------------------
+Features to Build and How to Build them
+------------------------------------------------------
