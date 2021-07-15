@@ -20,8 +20,9 @@ Frontend
 
 Introduction
 
-1. At the end of every work session, please log any technical progress made in the Technical_Progress.txt document.
-2. Everyone needs to read the DevOps section. Frontend and Backend are optional to your specialization.
+PLEASE READ THIS
+
+Everyone needs to read the DevOps section. Frontend and Backend are optional to your specialization.
 
 ======================================================
 DevOps - Setting Up
@@ -31,8 +32,12 @@ DevOps - Setting Up
 General Idea for Feedback Loop
 ------------------------------------------------------
 
-1. Host a local version of the site from your local network such that anyone with access to your Wifi can open the site on their smartphone.
-2. It's possible to use Android Studio to set up a phone simulation but that's up to you. Phone simulation use a ton of processing power.
+The feedback loop is being able to see your changes in real time on the intended device.
+
+1. Host a local version of the site from your local network such that
+anyone with access to your Wifi can open the site on their smartphone.
+2. It's possible to use Android Studio to set up a phone simulation but that's up to you.
+Phone simulation uses a ton of processing power and is therefore slow to start, even for high-end computers.
 
 ------------------------------------------------------
 Version Control - Git
@@ -102,7 +107,8 @@ features (temporary, meant to be merged with staging)
 
 
 Situation:
-Someone merged their feature branch to the staging branch and I'd like to keep my feature branch updated with the new staging branch.
+Someone merged their feature branch to the staging branch and
+I'd like to keep my feature branch updated with the new staging branch.
 Solution:
 git checkout <your_feature_branch>
 git rebase staging
@@ -116,4 +122,23 @@ git push origin <your_feature_branch>
 ------------------------------------------------------
 Docker
 ------------------------------------------------------
+
+TODO: teach peeps how to use docker
+- brief introduction to docker
+- docker run commands
+- docker images
+- dockerfile explanation
+- docker-compose file explanation
+- set up your volumes folder for locally stored data
+- docker-compose command
+
+- Thomas needs to create a dockerfile and docker-compose.yml file that sets up a web page that is accessible on a local network.
+
+TL:DR; use "docker-compose up -d" to run the container.
+Use "docker-compose exec [your installation command]" whenever you need to install a new package/module.
+For example:
+    docker-compose exec sudo pipenv install ipython
+Use "docker-compose down" when you want to reset your container such as when you install a new package OR
+when you're done for the day
+Use "docker-compose up -d --build" after you install a new package so it exists in your container.
 
