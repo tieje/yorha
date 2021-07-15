@@ -32,7 +32,7 @@ DevOps - Setting Up
 General Idea for Feedback Loop
 ------------------------------------------------------
 
-The feedback loop is being able to see your changes in real time on the intended device.
+The feedback loop is being able to see your changes on the intended device.
 
 1. Host a local version of the site from your local network such that
 anyone with access to your Wifi can open the site on their smartphone.
@@ -51,18 +51,20 @@ When building begins, a staging branch will be added.
 Many smaller feature branches will be created whenever a feature will be added.
 These smaller feature branches will always merge with the staging branch.
 Features include small changes and bug fixes.
-It is only when a product is ready to be released, that the staging branch will merge with 
+It is only when a product is ready to be released, that the staging branch will merge with the main branch.
 
 main (The final release or the actual product)
 staging (the most updated version of the application)
 features (temporary, meant to be merged with staging)
 
 1. Either create a new feature branch or check out an available branch
+
     git checkout -b <branch_name>
         When you're creating a new feature branch, please prefix it with "feat-". For example,
             feat-<your_feature_branch_name>
             feat-my_feet
             feat-technical-docs
+
     git checkout <branch_name>
 
     "git fetch" stuff below
@@ -91,7 +93,7 @@ features (temporary, meant to be merged with staging)
     git commit -m "<commit_message>"
     git push origin <branch_name>
 
-    tip: "git add -u" can be used to move all changed files staging, excluding new files.
+    tip: "git add -u" can be used to move all changed files to the staging branch, excluding new files.
 
 4. Repeat step 3 until you're ready to merge the feature with the staging branching.
 
