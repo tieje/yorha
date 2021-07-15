@@ -40,6 +40,81 @@ Version Control - Git
 
 https://www.robinwieruch.de/git-team-workflow
 
+main
+
+When building begins, a staging branch will be added.
+Many smaller feature branches will be created whenever a feature will be added.
+These smaller feature branches will always merge with the staging branch.
+Features include small changes and bug fixes.
+It is only when a product is ready to be released, that the staging branch will merge with 
+
+main (The final release or the actual product)
+staging (the most updated version of the application)
+features (temporary, meant to be merged with staging)
+
+1. Either create a new feature branch or check out an available branch
+    git checkout -b <branch_name>
+        When you're creating a new feature branch, please prefix it with "feat-". For example,
+            feat-<your_feature_branch_name>
+            feat-my_feet
+            feat-technical-docs
+    git checkout <branch_name>
+
+    "git fetch" stuff below
+
+        If you want to see the progress of a feature, but don't want to deal with the merge conflicts, use "git fetch".
+        https://www.atlassian.com/git/tutorials/syncing/git-fetch
+        git fetch is used for code review since it is isolated from local development work.
+        If you want on this new branch, you'll need to pull the latest changes with:
+        git pull --rebase origin <branch_name>
+        This puts your commits on top of the remote branch's commits.
+            If there is a merge conflict, resolve then:
+                git add .
+                    git rebase --continue
+                    Or worst case scenario if nothing works
+                    git rebase abort
+
+
+2. Do work on the branch. If you want to start over from scratch, simply delete the feature branch locally.
+    Local deletion - to free memory on your machine
+    git branch -d <branch_name>
+    Remote Deletion - only if whatever you wrote will never be useful
+    git push origin -d <branch_name>
+
+3. What we already know:
+    git add .
+    git commit -m "<commit_message>"
+    git push origin <branch_name>
+
+    tip: "git add -u" can be used to move all changed files staging, excluding new files.
+
+4. Repeat step 3 until you're ready to merge the feature with the staging branching.
+
+5. When you're completed with a feature, submit a pull request (PR) to merge your feature into the staging branch:
+    git checkout staging
+    git pull origin staging
+    git merge --no-ff <branch_name>
+        --no-ff means "no fast-forward".
+        Fast-forwarding occurs when instead of a merge commit, git just moves the branch pointer to the incoming commit.
+        This usually occurs when performing a git pull without any local changes.
+        https://stackoverflow.com/questions/9069061/what-is-the-difference-between-git-merge-and-git-merge-no-ff
+    git push origin staging
+
+
+Situation:
+Someone merged their feature branch to the staging branch and I'd like to keep my feature branch updated with the new staging branch.
+Solution:
+git checkout <your_feature_branch>
+git rebase staging
+    This merges all your changes from your feature branch on top of the staging branch.
+git push origin <your_feature_branch>
+    If pushing does not work, use the force. The force push, that is:
+    git push -f origin <branch_name>
+    Other people's pushes on the same would get overwritten if you did not pull them.
+
+
+
+
 ------------------------------------------------------
 Docker
 ------------------------------------------------------
