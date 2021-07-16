@@ -14,11 +14,11 @@ DevOps
         General Idea for Feedback Loop
         Version Control - Git
         Docker
+        Tasks for Docker
 Backend
     Introduction
-        Get the core started. We can always add things later.
     Building the Core
-    Features to Build
+    Features to Build and How to Build Them
         Algorithm for returning search results data
         Returning randomly returning text-based adventures
         Setting email Verification, possibly with Sendgrid
@@ -27,7 +27,7 @@ Frontend
     Introduction
         Build Components
     Building the Core
-    Features to Build
+    Features to Build and How to Build Them
         Archetype Settings
         Proximity Settings
         Results Box
@@ -148,9 +148,9 @@ Docker
 TL:DR;
 
 Use "docker-compose up -d" to run the container.
-Use "docker-compose exec [your installation command]" whenever you need to install a new package/module.
+Use "docker-compose exec [image_name] [your installation command]" whenever you need to install a new package/module.
 For example:
-    docker-compose exec sudo pipenv install ipython
+    docker-compose exec backend sudo pipenv install ipython
 Use "docker-compose down" when you want to destroy your container such as when you install a new package OR
 when you're done for the day
 Use "docker-compose up -d --build" after you install a new package so it exists in your container.
@@ -199,7 +199,7 @@ https://hub.docker.com/search?q=&type=image&image_filter=official
     -d          means to run this container detached. Detached as in,
                 so the container will run on its on terminal and not from the one you're currently using.
     --build     means to rebuild the image. You must rebuild the image after installing new packages to maintain changes.
-                You can install new packages with the "docker-compose exec [command to install package]" command.
+                You can install new packages with the "docker-compose exec [image_name] [command to install package]" command.
 
 
     To shutdown your containers, such as whenever you want to rebuild your images, run:
@@ -232,6 +232,21 @@ services:
     this data is available to multiple services. For example, what if we wanted a container
     to backup the data of the volume.
 
+------------------------------------------------------
+Tasks for Docker
+------------------------------------------------------
+
+- pull the python docker image
+    https://hub.docker.com/_/python/
+
+- pull the node.js docker image
+    https://hub.docker.com/_/node
+
+- pull postgis/postgis
+    https://registry.hub.docker.com/r/postgis/postgis
+
+- define your volume location in the docker-compose.yml file. This can be anywhere... reasonable.
+
 ======================================================
 Backend
 ======================================================
@@ -254,11 +269,159 @@ Building the core means having something that generally works and can have featu
 Building the Core
 ------------------------------------------------------
 
-3/15/2021
-TODO: Copy and paste and your steps for building the Backend Core
+Realistically, you could copy and paste the Django settings from the original Semblance repo if you're stuck or need help.
+https://github.com/tieje/Semblance
+
+- create the docker-compose.yml file in the project-level directory
+    - copy and paste the parts of the docker-compose.yml file that you think you'll need.
+        # You don't need everything right now.
+
+- set up virtual python environment with pipenv
+    - pip3 install pipenv
+    - cd backend
+    - pipenv --python 3.8.5 install django==3.1.6
+        # this was the latest release of django at the time
+    - pipenv shell
+        # this command enters the virtual environment.
+        # you can confirm by checking the version of python that you're using.
+
+- set up normal working django default page
+    - pipenv shell
+    - django-admin startproject config .
+    - python manage.py runserver
+
+- add postgresql database
+    - overwrite the database settings in django settings.py
+    - install psycopg2-binary from the docker command line
+        # docker-compose exec [options] [-e KEY=VAL...] SERVICE COMMAND [ARGS...]
+        - sudo docker-compose exec backend pipenv install psycopg2-binary==2.8.5
+        - sudo docker-compose exec backend sh
+            # I'm actually not sure what this does...
+        - docker-compose down
+        - docker-compose up -d --build
+        - docker-compose exec backend python manage.py migrate
+        - docker-compose exec backend python manage.py createsuperuser
+        - site admin check
+            http://127.0.0.1:8000/admin
+
+- get geodjango working
+    https://docs.djangoproject.com/en/3.1/ref/contrib/gis/install/
+    https://stackoverflow.com/questions/60403731/geodjango-and-postgis-setup-in-docker
+    - installed special libraries needed for Geodjango
+        - binutils
+        - libproj-dev
+        - gdal-bin
+        - python-gdal
+        - python3-gdal
+        # for your convenience:
+        docker-compose exec backend pipenv install binutils libproj-dev gdal-bin python-gdal python3-gdal
+    - rebuild the image
+        - docker-compose down
+        - docker-compose up -d --build
+
+- intall graphene on django
+    https://docs.graphene-python.org/projects/django/en/latest/
+    - docker-compose exec backend pipenv install graphene-django
+    - add graphene-django to installed apps in settings
+        https://github.com/graphql-python/graphene-django/
+    - rebuild image
+        - docker-compose down
+        - docker-compose up -d --build
+
+- create django MVP accounts app
+    - docker-compose exec backend python manage.py startapp accounts
+    - create MVP models
+        - extend custom users model to include location with geodjango
+        # only location is added to the custom user model for now. Characters will be added later.
+    - install accounts app to settings
+    - register model in admin.py file
+    - update AUTH_USER_MODEL so that the CustomUser model is used instead of the User model
+    - sudo docker-compose exec backend python manage.py makemigrations accounts
+        - next replace the engine of the database:
+            # https://stackoverflow.com/questions/12538510/getting-databaseoperations-object-has-no-attribute-geo-db-type-error-when-do
+        - create the superuser again:
+            docker-compose exec backend python manage.py createsuperuser
+    - sudo docker-compose exec backend python manage.py migrate
+    - test login and check postgis data
+    - Add an example user with django admin
+
+- set up the rest_framework
+    # referring to the django rest framework book, chapter 3 and beyond
+    - docker-compose exec backend pipenv install djangorestframework
+    - add 'rest_framework' to installed apps on settings
+    - insert REST_FRAMEWORK in settings and define default permissions
+        - think about implementing 'rest_framework.permissions.IsAuthenticated'
+            # 'rest_framework.permissions.IsAuthenticated'
+            # makes it so that only authenticated users can edit information on the API
+        - define 'DEFAULT_AUTHENTICATION_CLASSES' pg. 108
+            - 'rest_framework.authentication.TokenAuthentication'
+                # refer to pg 106 for security improvements for JWTs
+            - add 'rest_framework.authtoken' to installed apps
+                # I'll do this at the very end to decrease the amount of hard migrations
+    - add account's API url to config folder's urls.py file
+    - create an app-level serializers.py file
+        - edit the serializers.py file such that it can handle geojson output
+        - docker-compose exec backend pipenv install djangorestframework-gis
+        - add 'rest_framework_gis' to installed apps
+    +-update views.py file to create a generic view for looking at data
+        +-create generic view and comment this out to use as a backup
+        - create viewset for AccountsDetail and AccountsList class
+    - update accounts' app-level urls.py file
+        - create routers for viewsets
+    - use CORS to require specific HTTP Headers for http requests
+        - docker-compose exec backend pipenv install django-cors-headers
+        - add 'corsheaders' to installed apps in settings
+        - add 'corsheaders.middleware.CorsMiddleware' to MIDDLEWARE
+        - define CORS_ORIGIN_WHITELIST in settings
+            # we define ports 3000 and 8000 because that is what we'll be using for react and django respectively
+    - create basic login, logout, and authentication endpoints:
+        - docker-compose exec backend pipenv install dj-rest-auth
+        - add 'dj_rest_auth' to installed apps
+        - configure urls.py file in config folder for dj-rest-auth pg. 112
+    - set up user-registration
+        - docker-compose exec backend pipenv install django-allauth
+        - check pg 117 for additions to Installed apps in settings
+        - define EMAIL_BACKEND in settings
+        - define SITE_ID in settings
+        - set up registration urls in config/urls.pyk
+    - docker-compose exec backend python manage.py migrate
+    - rebuild image
+
+- set up graphQL
+    - docker-compose exec backend pipenv install graphene-django
+    - add to installed apps:
+        https://docs.graphene-python.org/projects/django/en/latest/installation/
+    - docker-compose exec backend pipenv install graphene_gis
+    - add to installed apps:
+        https://github.com/EverWinter23/graphene-gis
+    - set up a graphQL url endpoint
+    - define GRAPHENE in settings
+    - docker-compose exec backend pipenv install graphene
+    - docker-compose exec backend pipenv install django-graphiql
+    - set up graphQL schema in project-level directory
+        https://docs.graphene-python.org/projects/django/en/latest/installation/
+        https://docs.graphene-python.org/projects/django/en/latest/tutorial-plain/
+    - determine how to ensure that geojson objects are used by graphql
+
+- Implement schema and documentation for REST API
+    - docker-compose exec backend pipenv install pyyaml
+    - docker-compose exec backend pipenv install uritemplate
+    - docker-compose exec backend pipenv install drf-yasg
+    - docker-compose down
+        - docker-compose up -d --build
+    - docker-compose exec backend python manage.py generateschema > openapi-schema.yml
+    - add to installed_apps in settings
+    - set up URLs
+
+If you would like to go into the actual container and check out the file structure, use the following commands:
+
+- test image and dockerfiles
+    - cd Backend
+    - sudo docker build -t backend:1 .
+    - sudo docker run -it --name semblance -p 8000:8000 backend:1 bash
 
 ------------------------------------------------------
-Features to Build and How to Build them
+Features to Build and How to Build Them
 ------------------------------------------------------
 
 ======================================================
@@ -283,8 +446,39 @@ Building the core means having something that generally works and can have featu
 Building the Core
 ------------------------------------------------------
 
+- install node.js on your computer
+    https://nodejs.org/en/
 
+- cd frontend
+
+- npx create-react-app my-app --template typescript
+https://create-react-app.dev/docs/adding-typescript/
+
+- replace the project-level docker-compose.yml file with the docker-compose.yml in the Docker-Compose_file folder
+
+- run containers and check if it works
+    docker-compose up -d
+    npm start
+
+- install typescript on the docker container
+    docker-compose exec frontend npm install -g typescript
+
+- install Apollo on the docker container
+    docker-compose exec frontend npm install @apollo/client graphql
+
+- install styled components
+    docker-compose exec frontend npm install styled-components@^5.2.1 @types/styled-components@^5.1.9
+
+- rebuild image
+    docker-compose down
+    docker-compose up -d --build
+    npm start
 
 ------------------------------------------------------
-Features to Build and How to Build them
+Features to Build and How to Build Them
 ------------------------------------------------------
+
+7/16/2021
+TODO:
+- build frontend component features in English for TypeScript
+- start with proximity and gender settings component
