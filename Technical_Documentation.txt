@@ -446,33 +446,37 @@ Building the core means having something that generally works and can have featu
 Building the Core
 ------------------------------------------------------
 
-- install node.js on your computer
++ install node.js on your computer
     https://nodejs.org/en/
 
-- cd frontend
++ cd frontend
 
-- npx create-react-app my-app --template typescript
-https://create-react-app.dev/docs/adding-typescript/
-
-- replace the project-level docker-compose.yml file with the docker-compose.yml in the Docker-Compose_file folder
-
-- run containers and check if it works
-    docker-compose up -d
-    npm start
-
-- install typescript on the docker container
++ install typescript on the docker container
     docker-compose exec frontend npm install -g typescript
 
-- install Apollo on the docker container
-    docker-compose exec frontend npm install @apollo/client graphql
++ npx create-react-app frontend --template typescript
+https://create-react-app.dev/docs/adding-typescript/
 
-- install styled components
-    docker-compose exec frontend npm install styled-components@^5.2.1 @types/styled-components@^5.1.9
++ test with yarn start
+    yarn start
+    + end the run Ctrl + C
 
-- rebuild image
++ replace the project-level docker-compose.yml file with the docker-compose.yml in the Docker-Compose_file folder
+
++ install Apollo on the docker container to generate a package-lock.json file
+    npm install @apollo/client graphql
+
++ run containers and check if it works
+    docker-compose up -d --build
+
++ test by going to http://localhost:3000/
+
++ install styled components
+   npm install styled-components@^5.2.1 @types/styled-components@^5.1.9
+
++ rebuild image
     docker-compose down
     docker-compose up -d --build
-    npm start
 
 ------------------------------------------------------
 Features to Build and How to Build Them
@@ -482,3 +486,4 @@ Features to Build and How to Build Them
 TODO:
 - build frontend component features in English for TypeScript
 - start with proximity and gender settings component
+

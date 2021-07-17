@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+    frontend:
+        build: ./frontend/
+        image: frontend:1
+        command: ["npm", "start"]
+        volumes:
+          - ./frontend:/frontend
+        ports:
+          - 3000:3000
+        #depends_on:
+        #  - backend
+      # for when the time comes.
+      # the book says we need a volume within the db service and a volume outside of the db service...
+          # it's totally possible to just create a new volume every time, but it's simple extension of code to make it so that the volume is available to multiple services.
+          # For example, what if we wanted another container that backs up the data of the volume?
+          # https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference
