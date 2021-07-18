@@ -21,6 +21,11 @@ export const ColumnContainer = styled.div`
     margin: 0.5rem;
 `
 
-export const ArchetypeList = styled.div`
+export const ArchetypeListContainer = styled.div`
     width: 25%;
+    background-color: #f8847c;
+    margin: 1rem;
+    height: 90%;
+`
+export const ArchetypeContainer = styled.div`   
 `
