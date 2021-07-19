@@ -12,7 +12,12 @@ export const appData: ArchList = {
             id: '1',
             name: 'Warrior',
             desc: 'love fighting love',
-        }
+        },
+        {
+            id: '2',
+            name: 'Leader',
+            desc: 'I will build this world anew',
+        },
     ]
 }
 
