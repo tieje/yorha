@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    height: 75%;
+    height: 80%;
     padding: 1rem;
     background-color: #baf8c2;
     flex-basis: auto;
@@ -53,7 +53,7 @@ export const ArchetypeHorizontalContainer = styled.div`
 export const ArchetypesDescriptionContainer = styled.div`
     display: flex;
     background-color: cyan;
-    flex-grow: 5;
+    flex-grow: 3;
     border: 1px solid black;
     margin: 1rem;
     margin-bottom: 0;
