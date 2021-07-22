@@ -21,6 +21,8 @@ export const appData: ArchList = {
     ]
 }
 
+
+
 export const ArchetypesList: FC = ({ children }) => {
     return (
         <ArchetypeListContainer>
