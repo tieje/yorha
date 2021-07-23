@@ -2,6 +2,8 @@ import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosenListContain
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosen } from './ArchetypesChosen'
 import { Column } from './Column';
+// state
+import { ArchetypeListContainer, ArchetypeListItem } from './styles';
 
 
 export const App = () => {
@@ -9,9 +11,14 @@ export const App = () => {
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList>
-                        more stuff
-                    </ArchetypesList>
+                    <ArchetypeListContainer>
+                        <ArchetypeListItem>
+                            Something
+                        </ArchetypeListItem>
+                        <ArchetypeListItem>
+                            More
+                        </ArchetypeListItem>
+                    </ArchetypeListContainer>
                     <ArchetypesChosen>
                         <ArchetypesDescriptionContainer>
                             meh
