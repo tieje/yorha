@@ -3,22 +3,15 @@ import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosen } from './ArchetypesChosen'
 import { Column } from './Column';
 // state
-import { ArchetypeListContainer, ArchetypeListItem } from './styles';
-
+import { useAppState } from './state/AppStateContext';
 
 export const App = () => {
+    const { list } = useAppState()
     return (
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypeListContainer>
-                        <ArchetypeListItem>
-                            Something
-                        </ArchetypeListItem>
-                        <ArchetypeListItem>
-                            More
-                        </ArchetypeListItem>
-                    </ArchetypeListContainer>
+                    <ArchetypesList />
                     <ArchetypesChosen>
                         <ArchetypesDescriptionContainer>
                             meh
@@ -29,26 +22,26 @@ export const App = () => {
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
             </Column>
-            <Column>
-                <MapProximityGenderSettingsContainer>
-                    <MapContainer>
-                        other stuff
-                    </MapContainer>
-                    <ProximityGenderContainer>
-                        there
-                    </ProximityGenderContainer>
-                </MapProximityGenderSettingsContainer>
-            </Column>
-            <Column>
-                <ResultsChatContainer>
-                    <ResultsContainer>
-                        perfect
-                    </ResultsContainer>
-                    <ChatContainer>
-                        ok
-                    </ChatContainer>
-                </ResultsChatContainer>
-            </Column>
+                <Column>
+                    <MapProximityGenderSettingsContainer>
+                        <MapContainer>
+                            other stuff
+                        </MapContainer>
+                        <ProximityGenderContainer>
+                            there
+                        </ProximityGenderContainer>
+                    </MapProximityGenderSettingsContainer>
+                </Column>
+                <Column>
+                    <ResultsChatContainer>
+                        <ResultsContainer>
+                            perfect
+                        </ResultsContainer>
+                        <ChatContainer>
+                            ok
+                        </ChatContainer>
+                    </ResultsChatContainer>
+                </Column>
         </AppContainer>
-    );
+            );
 }
