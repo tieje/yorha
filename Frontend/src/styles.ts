@@ -34,7 +34,7 @@ export const ArchetypeListContainer = styled.div`
 export const ArchetypeContainer = styled.div`
 `
 
-export const ArchetypeListItem = styled.div`
+export const ArchetypeListItemContainer = styled.div`
     background-color: green;
     margin-top: 1rem;
     margin-bottom: 1rem;
