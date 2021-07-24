@@ -34,6 +34,16 @@ export const ArchetypeListContainer = styled.div`
 export const ArchetypeContainer = styled.div`
 `
 
+export const ArchetypeListItemContainer = styled.div`
+    background-color: green;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 20px;
+    width: 100%;
+`
+
 export const ArchetypesChosenContainer = styled.div`
     display: flex;
     flex-grow: 6;
