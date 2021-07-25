@@ -70,6 +70,26 @@ export const ArchetypesDescriptionContainer = styled.div`
     padding: 1rem;
 `
 
+export const ArchetypeDescriptionItemContainer = styled.div`
+    display: flex;
+    background-color: red;
+    flex-grow: 1;
+    margin: 1rem;
+    padding: 1rem;
+    flex-direction: column;
+`
+export const ArchetypeDescriptionName = styled.div`
+    background-color: cyan;
+    flex-grow: 1;
+    margin: 1rem;
+    padding 1rem;
+`
+export const ArchetypeDescriptionPayload = styled.div`
+    background-color: yellow;
+    flex-grow: 1;
+    margin: 1rem;
+    padding 1rem;
+`
 export const ArchetypesChosenListContainer = styled.div`
     padding: 1rem;
     display: flex;

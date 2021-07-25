@@ -17,3 +17,6 @@ code {
 html, body, #root {
     height: 100%;
 }
+p {
+  word-break: break-all;
+}
