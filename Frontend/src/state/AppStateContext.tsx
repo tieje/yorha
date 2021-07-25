@@ -11,6 +11,7 @@ export type ArchList = {
 
 type AppStateContextProps = {
 	list: Archetype[]
+    getItemByListId(id: string): Archetype | undefined
 }
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
@@ -37,8 +38,12 @@ export const appData: ArchList = {
 
 export const AppStateProvider: FC = ({ children }) => {
 	const { list } = appData
+    const getItemByListId = (id: string) => {
+        const arch_object = list.find((item) => item.id === id)
+        return (arch_object)
+    }
 	return (
-		<AppStateContext.Provider value={{ list }}>
+		<AppStateContext.Provider value={{ list, getItemByListId }}>
 			{children}
 		</AppStateContext.Provider>
 	)
