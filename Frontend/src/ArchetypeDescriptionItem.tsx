@@ -12,7 +12,7 @@ export const ArchetypeDescriptionItem = ({ arch_object }: ArchetypeDescriptionIt
 				<h4>{arch_object?.name}</h4>
 			</ArchetypeDescriptionName>
 			<ArchetypeDescriptionPayload>
-				<p>{arch_object?.desc}</p>
+				{arch_object?.desc}
 			</ArchetypeDescriptionPayload>
 		</ArchetypeDescriptionItemContainer>
 	)

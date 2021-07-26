@@ -28,8 +28,8 @@ export const ArchetypeListContainer = styled.div`
     background-color: #f8847c;
     margin: 1rem;
     height: 90%;
-    flex-grow: 1;
     padding 1rem;
+    min-width: 100px;
 `
 export const ArchetypeContainer = styled.div`
 `
@@ -46,9 +46,9 @@ export const ArchetypeListItemContainer = styled.div`
 
 export const ArchetypesChosenContainer = styled.div`
     display: flex;
-    flex-grow: 6;
     background-color: white;
     flex-direction: column;
+    flex-grow: 1;
 `
 
 export const ArchetypeHorizontalContainer = styled.div`
@@ -80,23 +80,26 @@ export const ArchetypeDescriptionItemContainer = styled.div`
 `
 export const ArchetypeDescriptionName = styled.div`
     background-color: cyan;
-    flex-grow: 1;
     margin: 1rem;
     padding 1rem;
+    height: 100px;
 `
 export const ArchetypeDescriptionPayload = styled.div`
+    display: flex;
     background-color: yellow;
     flex-grow: 1;
     margin: 1rem;
     padding 1rem;
+    overflow-wrap: break-word;
+    height: 50px;
 `
 export const ArchetypesChosenListContainer = styled.div`
     padding: 1rem;
     display: flex;
     background-color: red;
-    flex-grow: 1;
     border: 1px solid black;
     margin: 1rem;
+    height: 125px;
 `
 export const MapProximityGenderSettingsContainer = styled.div`
     display: flex;

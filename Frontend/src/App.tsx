@@ -4,19 +4,24 @@ import { ArchetypesChosen } from './ArchetypesChosen'
 import { Column } from './Column';
 // state
 import { useAppState } from './state/AppStateContext';
-import { useState } from 'react'
 import { ArchetypeDescription } from './ArchetypeDescription';
+import { useState } from 'react'
+
 
 export const App = () => {
-    const { list } = useAppState()
-    const [hover, ArchHover] = useState('')
+    const { hoverItemId } = useAppState()
+    const [ hoverId, setHoverId] = useState(hoverItemId)
+    const updateArchId = (id: string): void => {
+        setHoverId(id)
+        console.log(id)
+    }
     return (
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList />
+                    <ArchetypesList updateArchId={updateArchId}/>
                     <ArchetypesChosen>
-                        <ArchetypeDescription id={'1'}/>
+                        <ArchetypeDescription id={hoverId}/>
                         <ArchetypesChosenListContainer>
                             OH
                         </ArchetypesChosenListContainer>

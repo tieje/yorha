@@ -1,13 +1,16 @@
-import { ArchetypeListItemContainer  } from "./styles";
+import { ArchetypeListItemContainer } from "./styles";
 
 type ArchetypeListItemProps = {
     id: string
     name: string
+    updateArchId: (id: string) => void
 }
 
-export const ArchetypeListItem = ({ name }: ArchetypeListItemProps) => {
+export const ArchetypeListItem = ({ id, name, updateArchId }: ArchetypeListItemProps) => {
+    const handleMouseOver = () => {
+        updateArchId(id)
+    }
     return (
-        <ArchetypeListItemContainer>{name}</ArchetypeListItemContainer>
+        <ArchetypeListItemContainer onMouseOver={handleMouseOver}>{name}</ArchetypeListItemContainer>
     )
 }
-

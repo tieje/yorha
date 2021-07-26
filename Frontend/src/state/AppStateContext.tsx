@@ -5,45 +5,60 @@ export type Archetype = {
     name: string;
     desc: string;
 }
-export type ArchList = {
+export type AppState = {
+    hoverItemId: string
     list: Archetype[];
 }
 
 type AppStateContextProps = {
+    hoverItemId: string
 	list: Archetype[]
     getItemByListId(id: string): Archetype | undefined
 }
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
 
-export const appData: ArchList = {
+export const appData: AppState = {
+    hoverItemId: '',
     list: [
         {
             id: '1',
             name: 'Warrior',
-            desc: 'love fighting love',
+            desc: `Half a league, half a league,
+            Half a league onward,
+            All in the valley of Death
+               Rode the six hundred.
+            “Forward, the Light Brigade!
+            Charge for the guns!” they said.
+            Into the valley of Death
+               Rode the six hundred.`,
         },
         {
             id: '2',
             name: 'Leader',
-            desc: 'I will build this world anew',
+            desc: 'What do you do when there is an evil you cannot defeat by just means? Do you stain your hands with evil to destroy evil? Or do you remain steadfastly just and righteous even if it means surrendering to evil?',
         },
 		{
 			id: '3',
 			name: 'Steward',
-			desc: 'Help one and all.'
+			desc: `It is calling for compassion.
+            It is calling for responsible hands.
+            It is calling for stewards,
+            stewards to see and listen,
+            stewards to learn and act,
+            stewards to protect and love.`
 		}
     ]
 }
-
+//https://www.poemhunter.com/poem/the-earth-s-call-for-responsible-stewards/
 export const AppStateProvider: FC = ({ children }) => {
-	const { list } = appData
+	const { hoverItemId, list } = appData
     const getItemByListId = (id: string) => {
         const arch_object = list.find((item) => item.id === id)
         return (arch_object)
     }
 	return (
-		<AppStateContext.Provider value={{ list, getItemByListId }}>
+		<AppStateContext.Provider value={{hoverItemId, list, getItemByListId }}>
 			{children}
 		</AppStateContext.Provider>
 	)
