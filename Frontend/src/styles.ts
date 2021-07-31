@@ -4,7 +4,7 @@ export const AppContainer = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    height: 80%;
+    height: 90%;
     padding: 1rem;
     background-color: #baf8c2;
     flex-basis: auto;
@@ -43,14 +43,6 @@ export const ArchetypeListItemContainer = styled.div`
     height: 20px;
     width: 100%;
 `
-
-export const ArchetypesChosenContainer = styled.div`
-    display: flex;
-    background-color: white;
-    flex-direction: column;
-    flex-grow: 1;
-`
-
 export const ArchetypeHorizontalContainer = styled.div`
     display: flex;
     flex-direction: row;
@@ -63,11 +55,17 @@ export const ArchetypeHorizontalContainer = styled.div`
 export const ArchetypesDescriptionContainer = styled.div`
     display: flex;
     background-color: cyan;
-    flex-grow: 3;
+    flex-grow: 1;
     border: 1px solid black;
-    margin: 1rem;
+    margin: 3px;
     margin-bottom: 0;
-    padding: 1rem;
+    padding: 3px;
+`
+export const ArchetypesChosen = styled.div`
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    flex-grow: 1;
 `
 
 export const ArchetypeDescriptionItemContainer = styled.div`
@@ -79,10 +77,13 @@ export const ArchetypeDescriptionItemContainer = styled.div`
     flex-direction: column;
 `
 export const ArchetypeDescriptionName = styled.div`
+    display: flex;
+    flex-direction: column;
     background-color: cyan;
     margin: 1rem;
     padding 1rem;
-    height: 100px;
+    height: 50px;
+
 `
 export const ArchetypeDescriptionPayload = styled.div`
     display: flex;
@@ -93,13 +94,60 @@ export const ArchetypeDescriptionPayload = styled.div`
     overflow-wrap: break-word;
     height: 50px;
 `
+
 export const ArchetypesChosenListContainer = styled.div`
-    padding: 1rem;
     display: flex;
+    flex-direction: column;
+    flex-grow; 1;
     background-color: red;
     border: 1px solid black;
-    margin: 1rem;
-    height: 125px;
+    padding: 3px;
+    margin: 3px;
+    height: 300px;
+`
+export const ArchetypesChosenColumnContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
+`
+export const ArchetypesChosenColumnHeaderContainer = styled.div`
+    display: flex;
+    background-color: green;
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 3px;
+`
+export const ArchetypesChosenColumnHeader = styled.div`
+    display: flex;
+    background-color: white;
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 3px;
+    overflow-wrap: break-word;
+    width: 125px;
+    align-items: center;
+`
+export const ArchetypesChosenArchetypesListContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: cyan;
+    flex-grow: 8;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
+`
+export const ArchetypesChosenArchetypeNameContainer = styled.div`
+    display: flex;
+    background-color: white;
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
 `
 export const MapProximityGenderSettingsContainer = styled.div`
     display: flex;

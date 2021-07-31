@@ -1,6 +1,6 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosenListContainer, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ProximityGenderContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ProximityGenderContainer, ResultsChatContainer, ResultsContainer } from './styles'
 import { ArchetypesList } from './ArchetypesList';
-import { ArchetypesChosen } from './ArchetypesChosen'
+import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
 // state
 import { useAppState } from './state/AppStateContext';
@@ -22,9 +22,9 @@ export const App = () => {
                     <ArchetypesList updateArchId={updateArchId}/>
                     <ArchetypesChosen>
                         <ArchetypeDescription id={hoverId}/>
-                        <ArchetypesChosenListContainer>
+                        <ArchetypesChosenList>
                             OH
-                        </ArchetypesChosenListContainer>
+                        </ArchetypesChosenList>
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
             </Column>
