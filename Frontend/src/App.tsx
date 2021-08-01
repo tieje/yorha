@@ -13,7 +13,6 @@ export const App = () => {
     const [ hoverId, setHoverId] = useState(hoverItemId)
     const updateArchId = (id: string): void => {
         setHoverId(id)
-        console.log(id)
     }
     return (
         <AppContainer>
@@ -22,9 +21,7 @@ export const App = () => {
                     <ArchetypesList updateArchId={updateArchId}/>
                     <ArchetypesChosen>
                         <ArchetypeDescription id={hoverId}/>
-                        <ArchetypesChosenList>
-                            OH
-                        </ArchetypesChosenList>
+                        <ArchetypesChosenList />
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
             </Column>

@@ -129,8 +129,9 @@ export const ArchetypesChosenColumnHeader = styled.div`
     padding: 5px;
     margin: 3px;
     overflow-wrap: break-word;
-    width: 125px;
+    width: 150px;
     align-items: center;
+    justify-content: center;
 `
 export const ArchetypesChosenArchetypesListContainer = styled.div`
     display: flex;

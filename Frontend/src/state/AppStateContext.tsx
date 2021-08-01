@@ -6,17 +6,24 @@ export type Archetype = {
     desc: string;
 }
 export type AppState = {
+    hoverItemId: string
     list: Archetype[];
+    identifyAs: string[]
+    lookingFor: string[]
 }
 
 type AppStateContextProps = {
+    hoverItemId: string
 	list: Archetype[]
     getItemByListId(id: string): Archetype | undefined
+    identifyAs: string[]
+    lookingFor: string[]
 }
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
 
 export const appData: AppState = {
+    hoverItemId: '',
     list: [
         {
             id: '1',
@@ -44,18 +51,20 @@ export const appData: AppState = {
             stewards to see and listen,
             stewards to learn and act,
             stewards to protect and love.`
-		}
-    ]
+		},
+    ],
+    identifyAs: [],
+    lookingFor: [],
 }
 //https://www.poemhunter.com/poem/the-earth-s-call-for-responsible-stewards/
 export const AppStateProvider: FC = ({ children }) => {
-	const { list } = appData
+	const { hoverItemId, list, identifyAs, lookingFor} = appData
     const getItemByListId = (id: string) => {
         const arch_object = list.find((item) => item.id === id)
         return (arch_object)
     }
 	return (
-		<AppStateContext.Provider value={{list, getItemByListId }}>
+		<AppStateContext.Provider value={{hoverItemId, list, getItemByListId, identifyAs, lookingFor }}>
 			{children}
 		</AppStateContext.Provider>
 	)
