@@ -1,16 +1,8 @@
-import { createContext, useContext, FC } from "react"
+import { createContext, useContext, FC, Dispatch, useReducer } from "react"
+import { appStateReducer, Archetype, AppState } from './appStateReducer'
+import { Action } from './actions'
 
-export type Archetype = {
-    id: string;
-    name: string;
-    desc: string;
-}
-export type AppState = {
-    hoverItemId: string
-    list: Archetype[];
-    identifyAs: string[]
-    lookingFor: string[]
-}
+
 
 type AppStateContextProps = {
     hoverItemId: string
@@ -18,6 +10,7 @@ type AppStateContextProps = {
     getItemByListId(id: string): Archetype | undefined
     identifyAs: string[]
     lookingFor: string[]
+    dispatch: Dispatch<Action>
 }
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
@@ -58,13 +51,14 @@ export const appData: AppState = {
 }
 //https://www.poemhunter.com/poem/the-earth-s-call-for-responsible-stewards/
 export const AppStateProvider: FC = ({ children }) => {
-	const { hoverItemId, list, identifyAs, lookingFor} = appData
+    const [state, dispatch] = useReducer(appStateReducer, appData)
+	const { hoverItemId, list, identifyAs, lookingFor} = state
     const getItemByListId = (id: string) => {
         const arch_object = list.find((item) => item.id === id)
         return (arch_object)
     }
 	return (
-		<AppStateContext.Provider value={{hoverItemId, list, getItemByListId, identifyAs, lookingFor }}>
+		<AppStateContext.Provider value={{hoverItemId, list, getItemByListId, identifyAs, lookingFor, dispatch }}>
 			{children}
 		</AppStateContext.Provider>
 	)
