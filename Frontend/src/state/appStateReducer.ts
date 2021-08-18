@@ -15,17 +15,24 @@ export type AppState = {
 export const appStateReducer = (state: AppState, action: Action): AppState => {
 	switch (action.type) {
 		case "ADD_ARCH_IDENTIFY_AS": {
-			let ln = state.identifyAs.length
-
-			if (state.identifyAs) {
-
-			}
-			return {
-				...state,
-				identifyAs: [
-					...state.
-				]
-			}
+			 let newState = {...state}
+			 newState.identifyAs[action.payload.index] = action.payload.name
+			return newState
+		}
+		case "REMOVE_ARCH_IDENTIFY_AS": {
+			 let newState = {...state}
+			 newState.identifyAs[action.payload] = ''
+			return newState
+		}
+		case "ADD_ARCH_LOOKING_FOR": {
+			 let newState = {...state}
+			 newState.identifyAs[action.payload.index] = action.payload.name
+			return newState
+		}
+		case "REMOVE_ARCH_LOOKING_FOR": {
+			 let newState = {...state}
+			 newState.identifyAs[action.payload] = ''
+			return newState
 		}
 		default:
 			return state

@@ -1,41 +1,41 @@
 //Action types
+type Adding = {
+	index: number
+	name: string
+}
+
 export type Action =
-| {
-	type: "ADD_ARCH_IDENTIFY_AS"
-	payload: string
-}
-| {
-	type: "REMOVE_ARCH_IDENTIFY_AS"
-	payload?: string
-}
-| {
-	type: "ADD_ARCH_LOOKING_FOR"
-	payload: string
-}
-| {
-	type: "REMOVE_ARCH_LOOKING_FOR"
-	payload?: string
-}
+	| {
+		type: "ADD_ARCH_IDENTIFY_AS"
+		payload: Adding
+	}
+	| {
+		type: "REMOVE_ARCH_IDENTIFY_AS"
+		payload: number
+	}
+	| {
+		type: "ADD_ARCH_LOOKING_FOR"
+		payload: Adding
+	}
+	| {
+		type: "REMOVE_ARCH_LOOKING_FOR"
+		payload: number
+	}
 // These actions are created using action action creators below.
-export const addArchIdentity = (
-	name: string
-): Action => ({
+export const addArchIdentity = (index: number, name: string): Action => ({
 	type: "ADD_ARCH_IDENTIFY_AS",
-	payload: name
+	payload: {index, name}
 })
 
-export const removeArchIdentity = (): Action => ({
+export const removeArchIdentity = (index: number): Action => ({
 	type: "REMOVE_ARCH_IDENTIFY_AS",
-	payload: ""
+	payload: index
 })
-export const addArchLooking = (
-	name: string
-): Action => ({
+export const addArchLooking = (index: number, name: string): Action => ({
 	type: "ADD_ARCH_LOOKING_FOR",
-	payload: name
+	payload: {index, name}
 })
-
-export const removeArchLooking = (): Action => ({
+export const removeArchLooking = (index: number): Action => ({
 	type: "REMOVE_ARCH_LOOKING_FOR",
-	payload: ""
+	payload: index
 })

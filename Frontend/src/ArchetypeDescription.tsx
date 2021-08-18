@@ -1,6 +1,5 @@
 import { useAppState } from "./state/AppStateContext"
 import { ArchetypesDescriptionContainer } from "./styles"
-import { Archetype } from "./state/AppStateContext"
 import { ArchetypeDescriptionItem } from "./ArchetypeDescriptionItem"
 
 type ArchetypeDescriptionProps = {

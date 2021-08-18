@@ -11,6 +11,6 @@ export const ArchetypeListItem = ({ id, name, updateArchId }: ArchetypeListItemP
         updateArchId(id)
     }
     return (
-        <ArchetypeListItemContainer onMouseOver={handleMouseOver}>{name}</ArchetypeListItemContainer>
+        <ArchetypeListItemContainer onMouseOver={handleMouseOver} onClick={()=>dispatch()}>{name}</ArchetypeListItemContainer>
     )
 }

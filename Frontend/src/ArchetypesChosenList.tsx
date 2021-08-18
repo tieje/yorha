@@ -1,5 +1,6 @@
 import { ArchetypesChosenColumnContainer, ArchetypesChosenListContainer, ArchetypesChosenColumnHeaderContainer, ArchetypesChosenColumnHeader, ArchetypesChosenArchetypesListContainer, ArchetypesChosenArchetypeNameContainer } from "./styles";
-import { Archetype, useAppState } from "./state/AppStateContext"
+import { useAppState } from "./state/AppStateContext"
+import { Archetype } from "./state/appStateReducer"
 
 type ArchetypesChoseColumnProps = {
 	header: string

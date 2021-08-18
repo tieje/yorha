@@ -1,4 +1,4 @@
-import { Archetype } from "./state/AppStateContext"
+import { Archetype } from "./state/appStateReducer"
 import { ArchetypeDescriptionItemContainer, ArchetypeDescriptionName, ArchetypeDescriptionPayload } from "./styles"
 
 type ArchetypeDescriptionItemProps = {

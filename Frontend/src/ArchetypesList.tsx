@@ -1,7 +1,8 @@
 import { ArchetypeListContainer } from "./styles"
-import { FC } from 'react'
-import { useAppState, Archetype } from "./state/AppStateContext"
+import { FC, useDispatch } from 'react'
+import { useAppState } from "./state/AppStateContext"
 import { ArchetypeListItem } from "./ArchetypeListItem"
+import { Archetype } from "./state/appStateReducer"
 
 type ArchetypesListProps = {
     updateArchId: (id: string) => void
