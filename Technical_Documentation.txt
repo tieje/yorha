@@ -272,13 +272,23 @@ Building the Core
 Realistically, you could copy and paste the Django settings from the original Semblance repo if you're stuck or need help.
 https://github.com/tieje/Semblance
 
-- create the docker-compose.yml file in the project-level directory
-    - copy and paste the parts of the docker-compose.yml file that you think you'll need.
++ create the docker-compose.yml file in the project-level directory
+    + copy and paste the parts of the docker-compose.yml file that you think you'll need.
         # You don't need everything right now.
 
-- set up virtual python environment with pipenv
-    - pip3 install pipenv
-    - cd backend
++ set up virtual python environment with pipenv
+    + pip3 install pipenv
+    + cd backend
+    - Set up python version 3.8.5
+         # you have two choices:
+            - set up pyenv
+                https://github.com/pyenv/pyenv
+                For Windows (may not. Did not work for Justin)
+                https://github.com/pyenv-win/pyenv-win
+                - use python 3.8.5 with pyenv
+            OR
+            - download 3.8.5 on your computer. Pipenv will automatically scan your computer for this version and use it for the virtual environment.
+    - Make sure you're in the Backend folder still
     - pipenv --python 3.8.5 install django==3.1.6
         # this was the latest release of django at the time
     - pipenv shell
@@ -292,19 +302,20 @@ https://github.com/tieje/Semblance
 
 - add postgresql database
     - overwrite the database settings in django settings.py
+        https://github.com/tieje/Semblance/blob/main/backend/config/settings.py
+    -  you'll want to run this in the project-level directory
+        docker-compose up -d
     - install psycopg2-binary from the docker command line
         # docker-compose exec [options] [-e KEY=VAL...] SERVICE COMMAND [ARGS...]
         - sudo docker-compose exec backend pipenv install psycopg2-binary==2.8.5
-        - sudo docker-compose exec backend sh
-            # I'm actually not sure what this does...
         - docker-compose down
         - docker-compose up -d --build
-        - docker-compose exec backend python manage.py migrate
         - docker-compose exec backend python manage.py createsuperuser
         - site admin check
             http://127.0.0.1:8000/admin
 
-- get geodjango working
+# No need. Handled by the Dockerfile
+x get geodjango working
     https://docs.djangoproject.com/en/3.1/ref/contrib/gis/install/
     https://stackoverflow.com/questions/60403731/geodjango-and-postgis-setup-in-docker
     - installed special libraries needed for Geodjango
@@ -319,7 +330,7 @@ https://github.com/tieje/Semblance
         - docker-compose down
         - docker-compose up -d --build
 
-- intall graphene on django
+- install graphene on django
     https://docs.graphene-python.org/projects/django/en/latest/
     - docker-compose exec backend pipenv install graphene-django
     - add graphene-django to installed apps in settings
