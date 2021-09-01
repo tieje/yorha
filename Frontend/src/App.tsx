@@ -1,24 +1,26 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosenListContainer, ArchetypesDescriptionContainer, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ProximityGenderContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ProximityGenderContainer, ResultsChatContainer, ResultsContainer } from './styles'
 import { ArchetypesList } from './ArchetypesList';
-import { ArchetypesChosen } from './ArchetypesChosen'
+import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
-
+// state
+import { useAppState } from './state/AppStateContext';
+import { ArchetypeDescription } from './ArchetypeDescription';
+import { useState } from 'react'
 
 export const App = () => {
+    const { hoverItemId } = useAppState()
+    const [ hoverId, setHoverId] = useState(hoverItemId)
+    const updateArchId = (id: string): void => {
+        setHoverId(id)
+    }
     return (
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList>
-                        more stuff
-                    </ArchetypesList>
+                    <ArchetypesList key={1} updateArchId={updateArchId}/>
                     <ArchetypesChosen>
-                        <ArchetypesDescriptionContainer>
-                            meh
-                        </ArchetypesDescriptionContainer>
-                        <ArchetypesChosenListContainer>
-                            OH
-                        </ArchetypesChosenListContainer>
+                        <ArchetypeDescription id={hoverId}/>
+                        <ArchetypesChosenList />
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
             </Column>

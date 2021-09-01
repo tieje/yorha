@@ -1,33 +1,20 @@
-import { FC } from "react"
 import { ArchetypeListContainer } from "./styles"
-import { Archetype, ArchetypeName } from './archetype'
+import { FC } from 'react'
+import { useAppState } from "./state/AppStateContext"
+import { ArchetypeListItem } from "./ArchetypeListItem"
+import { Archetype } from "./state/appStateReducer"
 
-type ArchList = {
-    list: Archetype[];
+type ArchetypesListProps = {
+    updateArchId: (id: string) => void
 }
 
-export const appData: ArchList = {
-    list: [
-        {
-            id: '1',
-            name: 'Warrior',
-            desc: 'love fighting love',
-        },
-        {
-            id: '2',
-            name: 'Leader',
-            desc: 'I will build this world anew',
-        },
-    ]
-}
-
-
-
-export const ArchetypesList: FC = ({ children }) => {
+export const ArchetypesList: FC<ArchetypesListProps> = ({ updateArchId }) => {
+    const { list } = useAppState()
     return (
         <ArchetypeListContainer>
-            {children}
+            {list.map((item: Archetype) => (
+                <ArchetypeListItem name={item.name} key={item.id} id={item.id} updateArchId={updateArchId}/>
+            ))}
         </ArchetypeListContainer>
     )
 }
-
