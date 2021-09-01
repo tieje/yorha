@@ -7,7 +7,6 @@ import { useAppState } from './state/AppStateContext';
 import { ArchetypeDescription } from './ArchetypeDescription';
 import { useState } from 'react'
 
-
 export const App = () => {
     const { hoverItemId } = useAppState()
     const [ hoverId, setHoverId] = useState(hoverItemId)
@@ -18,7 +17,7 @@ export const App = () => {
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList updateArchId={updateArchId}/>
+                    <ArchetypesList key={1} updateArchId={updateArchId}/>
                     <ArchetypesChosen>
                         <ArchetypeDescription id={hoverId}/>
                         <ArchetypesChosenList />

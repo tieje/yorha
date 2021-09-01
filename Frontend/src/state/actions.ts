@@ -21,7 +21,7 @@ export type Action =
 		type: "REMOVE_ARCH_LOOKING_FOR"
 		payload: number
 	}
-// These actions are created using action action creators below.
+// These actions are created using action creators below.
 export const addArchIdentity = (index: number, name: string): Action => ({
 	type: "ADD_ARCH_IDENTIFY_AS",
 	payload: {index, name}

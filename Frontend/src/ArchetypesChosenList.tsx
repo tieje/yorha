@@ -1,42 +1,70 @@
-import { ArchetypesChosenColumnContainer, ArchetypesChosenListContainer, ArchetypesChosenColumnHeaderContainer, ArchetypesChosenColumnHeader, ArchetypesChosenArchetypesListContainer, ArchetypesChosenArchetypeNameContainer } from "./styles";
+import { ArchetypesChosenColumnContainer, ArchetypesChosenListContainer, ArchetypesChosenColumnHeaderContainer, ArchetypesChosenColumnHeader, ArchetypesChosenArchetypesListContainer, ArchetypesChosenArchetypeNameContainer, ArchetypesListItemDelete, ArchetypesChosenButtonCombiner } from "./styles";
 import { useAppState } from "./state/AppStateContext"
-import { Archetype } from "./state/appStateReducer"
+import { removeArchIdentity, removeArchLooking } from "./state/actions";
 
-type ArchetypesChoseColumnProps = {
+type ArchetypesChosenColumnProps = {
 	header: string
+	ListType: 'identity' | 'looking'
 }
 
 type ArchetypesChosenArchetypeNameProps = {
 	arch_name: string
 }
 
+type ArchetypesChosenArchetypesListProps = {
+	ListType: 'identity' | 'looking'
+}
+
+type DeleteProps = {
+	index: number
+	type: string
+}
 export const ArchetypesChosenList = () => {
 	return (
 		<ArchetypesChosenListContainer>
-			<ArchetypesChosenColumn header='I identify as a...' />
-			<ArchetypesChosenColumn header='I am looking for a...' />
+			<ArchetypesChosenColumn
+				key={'identity'}
+				header = {'I identify closely with...'}
+				ListType = {'identity'}
+			/>
+			<ArchetypesChosenColumn
+				key={'looking'}
+				header = {'I am looking for a...'}
+				ListType = {'looking'}
+			/>
 		</ArchetypesChosenListContainer>
 	)
 }
 
-const ArchetypesChosenColumn = ({ header }: ArchetypesChoseColumnProps) => {
+const ArchetypesChosenColumn = ({ header, ListType }: ArchetypesChosenColumnProps) => {
 	return (
 		<ArchetypesChosenColumnContainer>
 			<ArchetypesChosenColumnHeaderContainer>
 				<ArchetypesChosenColumnHeader>
 					{header}
 				</ArchetypesChosenColumnHeader>
-				<ArchetypesChosenArchetypesList />
+				<ArchetypesChosenArchetypesList key={ListType} ListType = {ListType}/>
 			</ArchetypesChosenColumnHeaderContainer>
 		</ArchetypesChosenColumnContainer>
 	)
 }
-const ArchetypesChosenArchetypesList = () => {
-	const { list } = useAppState()
+const ArchetypesChosenArchetypesList = ({ ListType }: ArchetypesChosenArchetypesListProps) => {
+	const { identifyAs, lookingFor } = useAppState()
+	const whichList = (e: string):string[] => {
+		if (e === 'identity') {
+			return identifyAs;
+		}
+		return lookingFor;
+	}
+	const thisList = whichList(ListType)
+
 	return (
 		<ArchetypesChosenArchetypesListContainer>
-			{list.map((item: Archetype) => (
-				<ArchetypesChosenArchetypeName arch_name = { item.name } />
+			{thisList.map((item: string, idx: number) => (
+				<ArchetypesChosenButtonCombiner>
+					<ArchetypesChosenArchetypeName key={idx} arch_name = { item } />
+					<DeleteButton key={idx} index={idx} type={ListType}/>
+				</ArchetypesChosenButtonCombiner>
 			))}
 		</ArchetypesChosenArchetypesListContainer>
 	)
@@ -47,5 +75,22 @@ const ArchetypesChosenArchetypeName = ({ arch_name }: ArchetypesChosenArchetypeN
 		<ArchetypesChosenArchetypeNameContainer>
 			{ arch_name }
 		</ArchetypesChosenArchetypeNameContainer>
+	)
+}
+
+const DeleteButton = ({index, type}: DeleteProps) => {
+    const { dispatch } = useAppState()
+	const delete_title = 'X'
+	const handleDelete = () => {
+		if (type === 'identity') {
+			dispatch(removeArchIdentity(index))
+		} else {
+			dispatch(removeArchLooking(index))
+		}
+	}
+	return (
+		<ArchetypesListItemDelete onClick={handleDelete}>
+			{delete_title}
+		</ArchetypesListItemDelete>
 	)
 }

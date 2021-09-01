@@ -26,12 +26,12 @@ export const appStateReducer = (state: AppState, action: Action): AppState => {
 		}
 		case "ADD_ARCH_LOOKING_FOR": {
 			 let newState = {...state}
-			 newState.identifyAs[action.payload.index] = action.payload.name
+			 newState.lookingFor[action.payload.index] = action.payload.name
 			return newState
 		}
 		case "REMOVE_ARCH_LOOKING_FOR": {
 			 let newState = {...state}
-			 newState.identifyAs[action.payload] = ''
+			 newState.lookingFor[action.payload] = ''
 			return newState
 		}
 		default:

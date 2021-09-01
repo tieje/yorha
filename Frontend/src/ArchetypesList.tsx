@@ -1,5 +1,5 @@
 import { ArchetypeListContainer } from "./styles"
-import { FC, useDispatch } from 'react'
+import { FC } from 'react'
 import { useAppState } from "./state/AppStateContext"
 import { ArchetypeListItem } from "./ArchetypeListItem"
 import { Archetype } from "./state/appStateReducer"

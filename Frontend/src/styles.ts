@@ -145,6 +145,24 @@ export const ArchetypesChosenArchetypesListContainer = styled.div`
 export const ArchetypesChosenArchetypeNameContainer = styled.div`
     display: flex;
     background-color: white;
+    flex-grow: 4;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
+`
+export const ArchetypesListItemDelete = styled.button`
+    display: flex;
+    background-color: red;
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 3px;
+    margin: 3px;
+    justify-content: center;
+    align-items: center;
+`
+export const ArchetypesChosenButtonCombiner = styled.div`
+    display: flex;
+    background-color: yellow;
     flex-grow: 1;
     border: 1px solid black;
     padding: 3px;
