@@ -266,6 +266,20 @@ Introduction
 
 Please read DevOps before reading this section.
 
+In order to set up the backend for most users:
+
+docker-compose up -d --build
+
+sudo docker-compose exec backend python manage.py migrate
+
+docker-compose exec backend python manage.py createsuperuser
+
+check admin site at
+
+http://127.0.0.1:8000/admin
+
+
+
 The following steps are in order using the plus/minus format.
 "-" means that this task is incomplete
 "+" means that this task is complete
