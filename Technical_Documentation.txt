@@ -600,4 +600,9 @@ https://www.npmjs.com/package/@types/google.maps
 
 The documentation is either greatly simplified or under-developed.
 
+9/2/2021
+
+Notes for how to use the google maps package:
+The usecallback() function is used in the documentation, not sure why:
+https://dmitripavlutin.com/dont-overuse-react-usecallback/
 
