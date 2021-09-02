@@ -29,9 +29,8 @@ Frontend
     Introduction
         Build Components
     Building the Core
-    Features to Build and How to Build Them
-        Archetype Settings
-        Proximity Settings
+    Features to Build and How to Build them
+        Google Maps Location Marker
         Results Box
         ChatApp Box
 
@@ -503,8 +502,88 @@ https://create-react-app.dev/docs/adding-typescript/
 Features to Build and How to Build Them
 ------------------------------------------------------
 
-7/16/2021
-TODO:
-- build frontend component features in English for TypeScript
-- start with proximity and gender settings component
+------------------------------------------------------
+Google Maps Location Marker
+------------------------------------------------------
+
+CONCLUSION
+
+This is the final API that I'll be using. It's 91% written in TS and is probably what should be used going forward.
+https://github.com/JustFly1984/react-google-maps-api
+https://react-google-maps-api-docs.netlify.app/#section-introduction
+
+
+9/1/2021
+If you're reading this from the future, the CONCLUSION topic above is where I decide which API to use.
+
+BELOW ARE MY NOTES to how I came to the above conclusion
+
+Marker Clustering
+https://developers.google.com/maps/documentation/javascript/marker-clustering
+We'll need this for determining density of users.
+
+
+The Google Map React component is the result of writing over the Google Maps API
+https://www.npmjs.com/package/google-map-react
+
+@types/google.maps installation
+https://www.npmjs.com/package/@types/google.maps
+https://developers.google.com/maps/documentation/javascript/using-typescript
+- I'll need to look up what -D does for npm installation
+
+I'll need to analyze the following TS code.
+- Why is there a Loader?
+- What does "new" keyword do when declaring a new google.maps.Map()
+
+
+npm install @googlemaps/js-api-loader
+
+import { Loader } from "@googlemaps/js-api-loader"
+const loader = new Loader({
+  apiKey: "YOUR_API_KEY",
+  version: "weekly",
+  ...additionalOptions,
+});
+
+loader.load().then(() => {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+  });
+});
+
+function initMap() {}
+
+The method above is using typescript without react.
+It simply uses script tags to add the google map content from an HTML source.
+Therefore, the above is not really what we're looking for.
+
+What we're probably looking for is the following:
+https://medium.com/@allynak/how-to-use-google-map-api-in-react-app-edb59f64ac9d
+This is likely the same guide that I used the first time around actually.
+
+As much as the above is useful, perhaps even more useful will be an entire library written for Google Maps in React+TS
+https://doc.googlemap-react.com/
+The above library is unmaintained and likely dead. I remember stumbling on another library that was still alive.
+https://tomchentw.github.io/react-google-maps/#introduction
+I believe the above link was the one, but even this one looks like its dead.
+https://github.com/tomchentw/react-google-maps
+The last commit was four years ago.
+The above libraries referenced the following link as the source:
+https://github.com/google-map-react/google-map-react
+Although the last commit was two days ago, it's been about a year since it's been updated.
+Also there is no indication of TS support.
+It appears that fullstack react company has their own google maps react tutorial
+https://github.com/fullstackreact/google-maps-react
+
+There does not seem to be any TS library support for Google Maps React.
+tomchentw actually switched to a different project by working directly on the react-google-map-api package.
+https://react-google-maps-api-docs.netlify.app/
+https://github.com/JustFly1984/react-google-maps-api
+The latest commit was last month.
+I appears that this is the one. It's written with typescript and uses types defined here:
+https://www.npmjs.com/package/@types/google.maps
+
+The documentation is either greatly simplified or under-developed.
+
 
