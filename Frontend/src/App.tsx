@@ -6,7 +6,6 @@ import { Column } from './Column';
 import { useAppState } from './state/AppStateContext';
 import { ArchetypeDescription } from './ArchetypeDescription';
 import { useState } from 'react'
-import { GoogleMap } from './GoogleMap';
 
 export const App = () => {
     const { hoverItemId } = useAppState()
