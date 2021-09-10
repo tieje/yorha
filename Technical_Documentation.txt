@@ -606,3 +606,27 @@ Notes for how to use the google maps package:
 The usecallback() function is used in the documentation, not sure why:
 https://dmitripavlutin.com/dont-overuse-react-usecallback/
 
+9/9/21
+
+Notes for how to use the google maps package:
+https://react-google-maps-api-docs.netlify.app/
+
+I think I understand enough to actually use the Google Map package.
+I'll use the useJsApiLoader hook to load the googlemaps script.
+Next, copy the onLoad function and see if I actually need React.useCallback.
+
+The first objective will simply be getting the map to appear on screen.
+I'll hook up the functionality later when the results component is finished.
+
+This isn't hard. I might be working on the chat functionality earlier than I thought, huh.
+
+Well perhaps rather than waiting for the results, I'll just create my own data in state.
+
+Which means... it's gonna be hard after all... :(
+
+1. Load a basic google map onto the site.
+2. Hard-code state for the google map.
+3. Add inverse flow in the form of actions.
+
+Hold off on connecting the Results cluster to the map. That will a feature for another day.
+
