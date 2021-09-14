@@ -630,3 +630,16 @@ Which means... it's gonna be hard after all... :(
 
 Hold off on connecting the Results cluster to the map. That will a feature for another day.
 
+9/13/2021
+
+Running into a problem where 'google is not defined'
+
+Might be solved with the following suggestion
+https://stackoverflow.com/questions/60986424/typescript-react-google-maps-google-does-not-exist
+https://developers.google.com/maps/documentation/javascript/using-typescript
+
++ installing types for google
+    npm i -D @types/google.maps
+
+This seems to work. google is now defined as a namespace.
+
