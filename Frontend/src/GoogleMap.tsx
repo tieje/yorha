@@ -21,7 +21,7 @@ const center = {
 };
 export const Map = () => {
     const { isLoaded, loadError } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyDZAjktkFOpJIG47OTxguIYByDlFoiyadQ" // ,
+        googleMapsApiKey: "AIzaSyAdSp8su0WhjM4CIHwHfwhWlNT7kos3oTs" // ,
         // ...otherOptions\
     })
 
@@ -66,7 +66,7 @@ const LIcon = () => {
 const LError = () => {
     return (
         <LoadingError>
-            I'm loading. Fancy animations are for later
+            Some loading error occurred. Not sure how to test this yet.
         </LoadingError>
     )
 }
