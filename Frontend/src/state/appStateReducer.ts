@@ -10,6 +10,7 @@ export type AppState = {
 	list: Archetype[];
 	identifyAs: string[]
 	lookingFor: string[]
+    markerPosition: google.maps.MapMouseEvent.latLng
 }
 
 export const appStateReducer = (state: AppState, action: Action): AppState => {

@@ -1,6 +1,9 @@
-import React from "react";
+import { useState }  from "react";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { LoadingError, LoadingIcon } from "./styles";
+import { Marker } from '@react-google-maps/api';
+import { useAppState } from './state/AppStateContext';
+
 /*
 const options = {
     zoomControlOptions: {
@@ -20,8 +23,13 @@ const center = {
     lng: -38.523
 };
 export const Map = () => {
+    const { markerPosition } = useAppState()
+    const [ markerState, setMarkerState] = useState(markerPosition)
+    const MapDragEnd = (e: google.maps.MapMouseEvent): void => {
+        setMarkerState(e.latLng)
+    }
     const { isLoaded, loadError } = useJsApiLoader({
-        googleMapsApiKey: "AIzaSyAdSp8su0WhjM4CIHwHfwhWlNT7kos3oTs" // ,
+        googleMapsApiKey: '' // ,
         // ...otherOptions\
     })
 
@@ -43,6 +51,11 @@ export const Map = () => {
             zoom={10}
         /*onLoad={onLoad}*/
         >
+            <Marker
+                position={markerState}
+                draggable={true}
+                onDragEnd={MapDragEnd}
+            />
             {
                 // ...Your map components
             }

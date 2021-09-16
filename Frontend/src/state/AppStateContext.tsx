@@ -2,8 +2,6 @@ import { createContext, useContext, FC, Dispatch, useReducer } from "react"
 import { appStateReducer, Archetype, AppState } from './appStateReducer'
 import { Action } from './actions'
 
-
-
 type AppStateContextProps = {
     hoverItemId: string
     list: Archetype[]
@@ -11,6 +9,7 @@ type AppStateContextProps = {
     identifyAs: string[]
     lookingFor: string[]
     dispatch: Dispatch<Action>
+    markerPosition: google.maps.MapMouseEvent.latLng
 }
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
@@ -48,17 +47,21 @@ export const appData: AppState = {
     ],
     identifyAs: ['', '', ''],
     lookingFor: ['', '', ''],
+    markerPosition: {
+        lat: -3.745,
+        lng: -38.523
+    }
 }
 //https://www.poemhunter.com/poem/the-earth-s-call-for-responsible-stewards/
 export const AppStateProvider: FC = ({ children }) => {
     const [state, dispatch] = useReducer(appStateReducer, appData)
-    const { hoverItemId, list, identifyAs, lookingFor } = state
+    const { hoverItemId, list, identifyAs, lookingFor, markerPosition } = state
     const getItemByListId = (id: string) => {
         const arch_object = list.find((item) => item.id === id)
         return (arch_object)
     }
     return (
-        <AppStateContext.Provider value={{ hoverItemId, list, getItemByListId, identifyAs, lookingFor, dispatch }}>
+        <AppStateContext.Provider value={{ hoverItemId, list, getItemByListId, identifyAs, lookingFor, dispatch, markerPosition }}>
             {children}
         </AppStateContext.Provider>
     )
