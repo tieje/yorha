@@ -21,6 +21,9 @@ export type Action =
 		type: "REMOVE_ARCH_LOOKING_FOR"
 		payload: number
 	}
+	| { type: "MOVE_MAP_CURSOR"
+		payload: google.maps.MapMouseEvent
+	}
 // These actions are created using action creators below.
 export const addArchIdentity = (index: number, name: string): Action => ({
 	type: "ADD_ARCH_IDENTIFY_AS",
@@ -38,4 +41,8 @@ export const addArchLooking = (index: number, name: string): Action => ({
 export const removeArchLooking = (index: number): Action => ({
 	type: "REMOVE_ARCH_LOOKING_FOR",
 	payload: index
+})
+export const moveMapCursor = (e: google.maps.MapMouseEvent): Action => ({
+	type: "MOVE_MAP_CURSOR",
+	payload: e
 })

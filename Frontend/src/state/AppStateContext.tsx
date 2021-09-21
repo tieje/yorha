@@ -2,6 +2,7 @@ import { createContext, useContext, FC, Dispatch, useReducer } from "react"
 import { appStateReducer, Archetype, AppState } from './appStateReducer'
 import { Action } from './actions'
 
+
 type AppStateContextProps = {
     hoverItemId: string
     list: Archetype[]
@@ -9,11 +10,14 @@ type AppStateContextProps = {
     identifyAs: string[]
     lookingFor: string[]
     dispatch: Dispatch<Action>
-    markerPosition: google.maps.MapMouseEvent.latLng
+    markerPosition: google.maps.LatLng
 }
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps)
-
+const initialLatLng: google.maps.LatLngLiteral = {
+    lat: -4,
+    lng: -40
+}
 export const appData: AppState = {
     hoverItemId: '',
     list: [
@@ -47,10 +51,7 @@ export const appData: AppState = {
     ],
     identifyAs: ['', '', ''],
     lookingFor: ['', '', ''],
-    markerPosition: {
-        lat: -3.745,
-        lng: -38.523
-    }
+    markerPosition: new google.maps.LatLng(initialLatLng)
 }
 //https://www.poemhunter.com/poem/the-earth-s-call-for-responsible-stewards/
 export const AppStateProvider: FC = ({ children }) => {
