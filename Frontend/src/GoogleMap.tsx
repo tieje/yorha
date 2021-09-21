@@ -18,8 +18,8 @@ const containerStyle = {
 };
 
 const center = {
-    lat: -3.745,
-    lng: -38.523
+    lat: 41.31491320423653,
+    lng:  -72.90545411168635
 };
 export const Map = () => {
     const { markerPosition } = useAppState()
@@ -27,7 +27,7 @@ export const Map = () => {
         moveMapCursor(e)
     }
     const { isLoaded, loadError } = useJsApiLoader({
-        googleMapsApiKey: '​​AIzaSyB_KFzin_dG1jmLQ9zvgBPslFijVYaNHtM' // ,
+        googleMapsApiKey: "AIzaSyB_KFzin_dG1jmLQ9zvgBPslFijVYaNHtM" // ,
         // ...otherOptions\
     })
 

@@ -10,7 +10,7 @@ export type AppState = {
 	list: Archetype[];
 	identifyAs: string[]
 	lookingFor: string[]
-    markerPosition: google.maps.LatLng
+    markerPosition: google.maps.LatLngLiteral
 }
 
 export const appStateReducer = (state: AppState, action: Action): AppState => {
@@ -44,7 +44,7 @@ export const appStateReducer = (state: AppState, action: Action): AppState => {
 					lat: latittude,
 					lng: longitude
 				}
-				newState.markerPosition = new google.maps.LatLng(newLatLngLiteral)
+				newState.markerPosition = newLatLngLiteral
 			}
 			return newState
 		}
