@@ -43,7 +43,7 @@ const ArchetypesChosenColumn = ({ header, ListType }: ArchetypesChosenColumnProp
 				<ArchetypesChosenColumnHeader>
 					{header}
 				</ArchetypesChosenColumnHeader>
-				<ArchetypesChosenArchetypesList key={ListType} ListType = {ListType}/>
+				<ArchetypesChosenArchetypesList key={Math.floor(Math.random() * 100)} ListType = {ListType}/>
 			</ArchetypesChosenColumnHeaderContainer>
 		</ArchetypesChosenColumnContainer>
 	)
@@ -62,8 +62,8 @@ const ArchetypesChosenArchetypesList = ({ ListType }: ArchetypesChosenArchetypes
 		<ArchetypesChosenArchetypesListContainer>
 			{thisList.map((item: string, idx: number) => (
 				<ArchetypesChosenButtonCombiner>
-					<ArchetypesChosenArchetypeName key={idx} arch_name = { item } />
-					<DeleteButton key={idx} index={idx} type={ListType}/>
+					<ArchetypesChosenArchetypeName key={idx + Math.floor(Math.random() * 100)} arch_name = { item } />
+					<DeleteButton key={idx + Math.floor(Math.random() * 100)} index={idx} type={ListType}/>
 				</ArchetypesChosenButtonCombiner>
 			))}
 		</ArchetypesChosenArchetypesListContainer>

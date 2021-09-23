@@ -6,6 +6,7 @@ import { Column } from './Column';
 import { useAppState } from './state/AppStateContext';
 import { ArchetypeDescription } from './ArchetypeDescription';
 import { useState } from 'react'
+import { Map } from './GoogleMap';
 
 export const App = () => {
     const { hoverItemId } = useAppState()
@@ -17,7 +18,7 @@ export const App = () => {
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList key={1} updateArchId={updateArchId}/>
+                    <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId}/>
                     <ArchetypesChosen>
                         <ArchetypeDescription id={hoverId}/>
                         <ArchetypesChosenList />
@@ -27,7 +28,7 @@ export const App = () => {
             <Column>
                 <MapProximityGenderSettingsContainer>
                     <MapContainer>
-                        trying again
+                        <Map />
                     </MapContainer>
                     <ProximityGenderContainer>
                         there
