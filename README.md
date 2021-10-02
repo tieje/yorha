@@ -2,7 +2,7 @@
 The final group project for foundations.
 1. `git clone https://github.com/tieje/yorha.git`
 2. `git checkout staging`
-    - This command checks out the staging branch that already exists. You won't be able to see it the first time around with the `git branch` command.
+    - This command checks out the staging branch that already exists. You won't be able to see it the first time around with the `git branch` command, unless you use the `--remote` or `-a` option.
 3. `git branch`
     - This is to show you that you're on the staging branch now.
 4. Read the <b>Technical Documentation</b> section below
@@ -198,7 +198,7 @@ https://www.youtube.com/watch?v=Gjnup-PuquQ
             - `docker run --name=yorha -d mysql/mysql-server:latest`
 
 3. `Dockerfile` and `docker-compose.yml` files. Think of them as the "Makefiles" of docker
-    
+
     a. The `Dockerfile` (no extension) is a collection `docker image` commands that are used to build the image.
 
     b. The `docker-compose.yml` file is a collection of `docker run` commands that are used to run images in containers.
