@@ -42,6 +42,7 @@ Welcome to the technical documentation of project Semblance.
     - [Backend Introduction](#backend-introduction)
     - [Building the Backend Core](#building-the-backend-core)
     - [Backend Features to Build and How to Build Them](#backend-features-to-build-and-how-to-build-them)
+        - [Complete Data Models](#complete-data-models)
         - Algorithm for returning search results data
         - Returning randomly returning text-based adventures
         - Setting email Verification, possibly with Sendgrid
@@ -423,7 +424,13 @@ If you would like to go into the actual container and check out the file structu
 
 ## Backend Features to Build and How to Build Them
 
-Nothing here yet.
+### Complete Data Models
+
+10/5/2021
+
+I'll need to complete the data models before I can update the state management system to Apollo.
+
+
 
 # Frontend
 
@@ -606,8 +613,10 @@ This seems to work. google is now defined as a namespace.
 
 10/5/2021 - Afternoon
 
-I'll need to cut this short for now. I'll merge this branch with a new one and create an addition study folder.
-
+I'll need to cut this short for now. I'll merge this branch with a new one.
+I'm on the new branch now called ft-complete-user-model because before I can even update the
+state management system, I'll need to get down the user model first.
+I won't be returning to this for a while.
 
 
 ### Limited ChatApp Core
