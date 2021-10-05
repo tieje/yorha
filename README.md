@@ -51,7 +51,9 @@ Welcome to the technical documentation of project Semblance.
     - [Building the Frontend Core](#building-the-frontend-core)
     - [Features to Build and How to Build them](#features-to-build-and-how-to-build-them)
         - [Google Maps Location Marker](#google-maps-location-marker)
+        - [Transition to Apollo State Management](#transition-to-apollo-state-management)
         - [Limited ChatApp Core](#limited-chatapp-core)
+
         - Results Box
 
 # Devops Introduction
@@ -600,9 +602,17 @@ https://developers.google.com/maps/documentation/javascript/using-typescript
 
 This seems to work. google is now defined as a namespace.
 
+### Transition to Apollo State Management
+
+10/5/2021 - Afternoon
+
+I'll need to cut this short for now. I'll merge this branch with a new one and create an addition study folder.
+
+
+
 ### Limited ChatApp Core
 
-10/5/2021
+10/5/2021 - Morning
 
 The goal of this chat application is to have a limited chat application that will definitely:
 
@@ -624,5 +634,17 @@ The user should be able to interact with the chat app in the following steps:
 4. Chat Opens with a prompt for both users.
 5. Users provides an answer. It's likely that the other user will not respond immediately.
 6. User clicks on a different username result.
-7. User repeats steps 5 and 6 until satisfied.
+7. User repeats steps 5 and 6 until they have sent messages to 10 people. Messaging 10 different users is the max daily limit.
+
+usereducer should be able to handle an array of 20 messages
+
+The chat app is dependent on the data retrieved by the results though.
+
+I'll need to clarify what is going to happen... This also means using Apollo Appropriately, which means updating user models...
+
+I'll need to study Apollo... But Apollo is a state management system. I should have been using apollo to begin with, not the useReducer() state management system.
+
+Since I already have a state management system, though poor as it is, I could just use the query system to update context... OR I could just build it right the first time and switch to Apollo now... Yeah. There's that, too.
+
+It's time to transition to the Apollo client state management library instead of using useReducer(). This is gonna be big.
 
