@@ -51,8 +51,8 @@ Welcome to the technical documentation of project Semblance.
     - [Building the Frontend Core](#building-the-frontend-core)
     - [Features to Build and How to Build them](#features-to-build-and-how-to-build-them)
         - [Google Maps Location Marker](#google-maps-location-marker)
+        - [Limited ChatApp Core](#limited-chatapp-core)
         - Results Box
-        - ChatApp Box
 
 # Devops Introduction
 
@@ -595,9 +595,34 @@ Running into a problem where 'google is not defined'
 Might be solved with the following suggestion
 https://stackoverflow.com/questions/60986424/typescript-react-google-maps-google-does-not-exist
 https://developers.google.com/maps/documentation/javascript/using-typescript
-
 + installing types for google
     - `npm i -D @types/google.maps`
 
 This seems to work. google is now defined as a namespace.
+
+### Limited ChatApp Core
+
+10/5/2021
+
+The goal of this chat application is to have a limited chat application that will definitely:
+
+- allow users to communicate through simple text and emotes
+- limit the number of messages available to each person to 20 messages with a 128 character limit per message.
+- present prompts for each person to answer, each person's response will only show when the other person responds. Both responses will be revealed at the same time.
+- five messages prior to the 20 message limit, we'll recommend exchanging contact info and a cafe or place to meet up close to the midpoint of your location markers.
+
+The user should be able to interact with the chat app in the following steps:
+
+1. User presses Search button
+2. Search results appear in search results box.
+    - The results prioritizes in this order:
+        - users that are online
+        - archetype matches
+        - proximity
+        - gender settings
+3. User clicks on a username result.
+4. Chat Opens with a prompt for both users.
+5. Users provides an answer. It's likely that the other user will not respond immediately.
+6. User clicks on a different username result.
+7. User repeats steps 5 and 6 until satisfied.
 
