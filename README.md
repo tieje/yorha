@@ -252,6 +252,8 @@ In order to set up the backend for most users:
 1. `docker-compose up -d --build`
 
 2. `sudo docker-compose exec backend python manage.py migrate`
+    - If you have an existing db, run the following command first before running the command above:
+    - `sudo docker-compose exec backend python manage.py makemigrations`
 
 3. `docker-compose exec backend python manage.py createsuperuser`
 
