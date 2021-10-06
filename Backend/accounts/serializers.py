@@ -11,7 +11,7 @@ class UserSerializer(GeoFeatureModelSerializer):
         # https://www.django-rest-framework.org/tutorial/1-serialization/
         # the ModelSerializer actually copies from models directly. Otherwise, the serializer will be as long as the model
         model = get_user_model()
-        fields = ('id', 'username', 'is_staff', 'is_active', 'date_joined', 'identify_as', 'search_for',)
+        fields = ('id', 'username', 'is_staff', 'is_active', 'date_joined', 'identify_as', 'search_for', 'gender')
         geo_field = 'location'
 
 class ArchetypeSerializer(serializers.ModelSerializer):
