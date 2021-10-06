@@ -11,3 +11,6 @@ I'll have about 3.5 hours to get work on the actual site then.
 
 I took away most of the other things. It might be a good idea for me to simply do right now.
 
+I'll need to know enough information to transition React Context to the Apollo Provider.
+I may want to actually do the chapter in the book for this.
+

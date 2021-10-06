@@ -1,0 +1,38 @@
+10/6/2021
+
+I have a general idea of what to do, but I'd like to look at what the books says.
+I'll do work in the morning and study at night.
+
+I'll be skipping all the to the end chapter.
+I had started this before, but I gave up when I realized that I need Redux and not Apollo since I wasn't going to use GraphQL.
+
+GraphQL, React, and TypeScript
+pg 501
+
+511
+previewing the final result is looking impossible so far. It's loading forever. I'm just going straight to step 1 instead.
+
+516
+not sure what a .env file is and how it works.
+https://medium.com/how-to-react/using-env-file-in-react-js-b2714235e77e
+It's a way to store and access variables globally in react. It's generally good for storing secrets.
+
+Honestly, I don't really feel like I'm getting anywhere with this chapter. At least not where I want to be.
+By the nature of the project, it's less about Apollo and more about the project as a whole.
+
+There may be one good thing and it's that there is a public graphql URL that I can use a test for a test graphql project.
+https://graphql-pokemon2.vercel.app/
+
+Creating the sample project:
+
+yarn create react-app apollo-poke-practice --template typescript
+
+The goal of this project is to use understand the apollo state management library.
+I just want to implement it in the frontend code really. It might not be a wise idea to build out an entire application.
+
+There is a significant amount of reading for me to do in the documentation. I'll need to implement caching in my future projects.
+
+Local state is the one that I am most interested in.
+
+https://www.apollographql.com/docs/react/local-state/local-state-management/
+
