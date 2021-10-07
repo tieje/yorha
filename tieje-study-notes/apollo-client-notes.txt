@@ -36,3 +36,24 @@ Local state is the one that I am most interested in.
 
 https://www.apollographql.com/docs/react/local-state/local-state-management/
 
+I will not be using any local-only fields in Apollo Client.
+Search settings are recorded in the user's profile.
+
+Now that I think about it everything is probably local state actually until the search button is made.
+
+There is an InMemoryCache that you'll use to make cache objects.
+These cache objects are similar to the dictionary objects that I usually create on my own,
+except now we can retrieve them locally through queries.
+
+There is no need to grab data from graphql if I can just grab it locally.
+I only need to send a mutate statement, which is not a big deal.
+ 
+Reactive variables will be useful when I'm about send out a Query.
+These variables will construct the active query.
+
+OR
+
+I don't actually need to implement the apollo state features since I already have a system set up.
+I don't need to rewrite the entire state management system. I just need to construct the graphQL statements.
+I don't necessarily need to use the Apollo state management library, though it would be more technically sound.
+

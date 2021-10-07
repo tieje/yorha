@@ -14,3 +14,9 @@ I took away most of the other things. It might be a good idea for me to simply d
 I'll need to know enough information to transition React Context to the Apollo Provider.
 I may want to actually do the chapter in the book for this.
 
+Apollo implementation is going to be easier than I thought since I'm not going to implement their state
+management library, just their graphql query functionality.
+
+I don't want to step on my teammates toes.
+I'd rather that everyone struggle and learn than for me to get ahead in the application.
+
