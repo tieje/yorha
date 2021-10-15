@@ -20,3 +20,14 @@ management library, just their graphql query functionality.
 I don't want to step on my teammates toes.
 I'd rather that everyone struggle and learn than for me to get ahead in the application.
 
+10/14/2021
+
+Alright, it's time for me to become a master of production.
+I will need to:
+
+- create a production build of my code and figure out what this means
+- run a production build from docker
+- run a production build from jelastic
+
+There is a ton to do.
+
