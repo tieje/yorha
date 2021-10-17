@@ -7,6 +7,8 @@ import { useAppState } from './state/AppStateContext';
 import { ArchetypeDescription } from './ArchetypeDescription';
 import { useState } from 'react'
 import { Map } from './GoogleMap';
+import GenderSelect from './Gender';
+
 
 export const App = () => {
     const { hoverItemId } = useAppState()
@@ -31,7 +33,7 @@ export const App = () => {
                         <Map />
                     </MapContainer>
                     <ProximityGenderContainer>
-                        there
+                        <GenderSelect />
                     </ProximityGenderContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>

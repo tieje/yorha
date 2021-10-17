@@ -8,43 +8,84 @@
 
 
 //something like:
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Form = props => {
-  const [gender, setGender] = useState();
-  const selectGender = e => {
-    const target = e.target;
-    if (target.checked) {
-      setGender(target.value);
+class GenderSelect extends Component<any,any>{
+  constructor(props:string){
+    super(props);
+    this.state = {
+      selectedOption: ''
+    };
     }
-  };
-  const handleSubmit = e => {
-    e.preventDefault();
-    console.log(gender);
-  };
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>
-	  <input type="radio" value="he/him/his" checked={gender == "he/him/his"}
-	         onChange={selectGender} />
-          <span>He/him/his</span>
-	</label>
-        <label>
-	  <input type="radio" value="she/her/hers" checked={gender == "she/her/hers"}
-	         onChange={selectGender} />
-          <span>She/her/hers</span>
-        </label>
-	<label>
-	  <input type="radio" value="they/them/theirs" checked={gender == "they/them/theirs"}
-	         onChange={selectGender} />
-          <span>They/them/theirs</span>
-	</label>
-	</div>
-	<button type="submit">Submit</button>
-	</form>
-	);
+  handleOptionChange = (changeEvent: { target: { value: any; }; }) => {
+  this.setState({
+    selectedOption: changeEvent.target.value
+  });
+}; 
+
+handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
+  formSubmitEvent.preventDefault();
+  console.log('Pronouns selected: ', this.state.selectedOption);
 };
 
-//to do:add typescript, add styling, clean up component documentation and file structure, connect to backend 
+ render() {
+  return (
+      <form onSubmit={this.handleFormSubmit}>
+        <p> Select pronouns:</p>
+        <div className = "form-check">
+          <label>
+          <input 
+            type="radio" 
+            name="gender-select"
+            id="man" 
+            value="he/him/his" 
+            checked={this.state.selectedOption === "he/him/his"}
+            onChange={this.handleOptionChange}
+            className="form-check-input" 
+            />
+            he/him/his
+          </label>
+          </div>
+
+          <div className = "form-check">
+          <label>
+          <input 
+            type="radio" 
+            name="gender-select"
+            id="woman" 
+            value="she/her/hers" 
+            checked={this.state.selectedOption === "she/her/hers"}
+            onChange={this.handleOptionChange}
+            className="form-check-input"
+            />
+            she/her/hers
+          </label>
+          </div>
+          <div className = "form-check">
+          <label>
+          <input 
+            type="radio" 
+            name="gender-select"
+            id="other" 
+            value="they/them/theirs" 
+            checked={this.state.selectedOption === "they/them/theirs"}
+            onChange={this.handleOptionChange} 
+            className="form-check-input"
+            />
+            they/them/theirs
+          </label>
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary mt-2" type="submit">
+              Submit
+            </button>
+          </div>
+    </form>
+   );
+  }
+}
+
+export default GenderSelect;
+
+//to do:add styling,  connect to backend 
