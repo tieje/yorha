@@ -4,3 +4,8 @@ https://docs.jelastic.com/?lang=en
 
 I did not get much done today, but I got some documentation in so that's cool.
 
+10/15/2021
+https://docs.jelastic.com/custom-containers-deployment/
+
+I think I'll spin up a new environment based on their template docker container and see what I'm allowed to edit.
+

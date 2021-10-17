@@ -1,0 +1,35 @@
+10/15/2021
+django source code
+https://github.com/django/django/tree/main/django
+
+Learning how to set up email notifications for semblance using sendgrid.
+
+Functions can get be used as decorators that the function below them as input.
+
+def none_guard(func):
+
+
+@none_guard
+def somefunc(args, kwargs)
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        return None if None in args else func(*args, **kwargs)
+    return wrapper
+
+Decorators allow us to use the function as input.
+This creates a wrapper.
+Instead of manually calling the wrapper every time its used, you can just call it once.
+
+What is middleware?
+It's standardized pieces of code that simplify communications between separate components such as with the backend and frontend.
+https://github.com/django/django/tree/main/django/middleware
+
+I went to utils mainly because they're general functions used by everything. But I guess I don't really need those functions.
+https://github.com/django/django/blob/569a33579c3cca5f801c544d9b52a34e3c779424/django/utils/translation/__init__.py
+
+Probably not the best place to start.
+I'm learning a bit about django, but what I should probably do is follow the book and then read the source code
+if I'm confused about anything.
+
+Next time read django for professionals and keep the source code open.
+

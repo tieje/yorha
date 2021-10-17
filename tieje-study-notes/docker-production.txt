@@ -1,0 +1,41 @@
+10/15/2021
+
+The goal is to figure out what I need to do in order to run docker containers in production mode.
+
+https://medium.com/@axbaretto/running-docker-containers-securely-in-production-98b8104ef68
+
+https://docs.docker.com/compose/production/
+So there would be a production and a development docker-compose file.
+
+So I'll need to create an additional .yml file like production.yml
+to add configurations such as...
+
+- removing volume bindings
+- bind to different ports on the host
+- setting environment variables
+- specifying restart policy
+- adding extra services like a log aggregator
+
+https://docs.docker.com/compose/extends/#different-environments
+Multiple compose configurations:
+docker-compose.yml contains the base configuration.
+-f option overrides this configuration
+
+So what I'll need to do is host the docker container locally in the container.
+I'll need to bind it to a port.
+But I'll also need to allow other computers to access that port through a firewall of course.
+This is part of web hosting.
+I'll need to dig deeper into jelastic then.
+
+It looks like I'm going to need to set up a docker hub repo.
+Jelastic will pull this image from the docker hub repo and build it.
+
+https://docs.docker.com/docker-hub/repos/
+
+I'll push the docker container to the repo.
+I guess when you think about it, it makes sense.
+I can use the complete working container. I only need to push it.
+
+I'm not supposed to do further configuration actually, which makes sense.
+
+
