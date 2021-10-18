@@ -27,7 +27,7 @@ class CustomUser(AbstractUser):
     search_for = models.ManyToManyField(
         Archetype, related_name='Archetype.name+')
     gender = models.CharField(
-        max_length=10, choices=Genders.choices(), default='non-binary')
+        max_length=10, choices=Genders.choices(), default=Genders.NONBINARY.value)
 
 
 """
