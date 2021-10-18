@@ -31,3 +31,19 @@ I will need to:
 
 There is a ton to do.
 
+10/18/2021
+
+I'm going to need to learn how to use nginx really well...
+Alright so I can deploy using docker compose from the github repo.
+This makes things simple.
+
+I'll need to create a docker compose file that runs production build of the website from nginx.
+
+1. Create a production of the website.
+1. Install nginx on a docker container and check out the website online. Play around with it.
+1. Check out how data should be stored on a docker container. Volumes or no.
+2. Host the website locally from a docker container with nginx. Make database configurations as well.
+3. Host the website from jelastic using docker-compose.
+
+This is main plan.
+

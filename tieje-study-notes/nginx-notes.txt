@@ -1,0 +1,12 @@
+10/18/2021
+
+https://jgefroh.medium.com/a-guide-to-using-nginx-for-static-websites-d96a9d034940
+
+Looks like I'll need to learn how to use nginx as a web server.
+
+The next logical step would be setting up load balancing on jelastic as well.
+
+https://en.wikipedia.org/wiki/Comparison_of_web_server_software
+
+Ok so the production build is only a few files that will be run using nginx.
+So I should be able to create this configuration locally.

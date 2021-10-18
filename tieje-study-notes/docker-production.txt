@@ -38,4 +38,16 @@ I can use the complete working container. I only need to push it.
 
 I'm not supposed to do further configuration actually, which makes sense.
 
+10/18/2021
 
+I'll need to create a second .yml file that will run in production mode.
+I still need to look at togglebox to figure out how it's done their end first.
+
+- create production mode .yml file
+- push repo to dockerhub
+
+https://docs.jelastic.com/docker-engine-deployment/
+https://jelastic.com/blog/docker-engine-automatic-install-swarm-connect/
+https://jelastic.com/blog/docker-engine-auto-install-connect-ssh-portainer/
+https://jelastic.com/blog/docker-engine-auto-install-connect-ssh-portainer/?utm_source=blog-docker-engine&utm_medium=part1
+I might not need to push a container if I can deploy it from the github repo.
