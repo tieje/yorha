@@ -39,11 +39,24 @@ This makes things simple.
 
 I'll need to create a docker compose file that runs production build of the website from nginx.
 
-1. Create a production of the website.
-1. Install nginx on a docker container and check out the website online. Play around with it.
-1. Check out how data should be stored on a docker container. Volumes or no.
-2. Host the website locally from a docker container with nginx. Make database configurations as well.
-3. Host the website from jelastic using docker-compose.
+This is the main plan.
 
-This is main plan.
++ 1. Create a production build of the website.
+- 1. Install nginx on a docker container and check out the website online. Play around with it.
+- 1. Check out how data should be stored on a docker container. Volumes or no.
+- 1. Check out how host from gunicorn as well as handle CORS
+- 2. Host the website locally from a docker container with nginx. Make database configurations as well.
+- 3. Host the website from jelastic using docker-compose.
 
+What I'll need to:
+
+- create a separate branch for building production mode
+
+- Backend
+    - install gunicorn on backend
+    - configure django settings to host site from gunicorn
+- DB
+    - figure out how to serve the backend data to django and how to save it
+- Frontend
+    - yarn build in Frontend folder
+    - install nginx on Frontend

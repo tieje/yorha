@@ -10,3 +10,8 @@ https://en.wikipedia.org/wiki/Comparison_of_web_server_software
 
 Ok so the production build is only a few files that will be run using nginx.
 So I should be able to create this configuration locally.
+
+I'm going to set up nginx in a vanilla ubuntu docker container.
+
+I'll do this tomorrow. I have other soft skill things to build.
+

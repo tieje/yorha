@@ -1,0 +1,28 @@
+10/18/2021
+
+https://stackoverflow.com/questions/48151128/difference-between-production-and-development-build-in-reactjs
+https://stackoverflow.com/questions/52177318/webpack-build-vs-react-scripts-build
+https://blog.logrocket.com/everything-you-need-to-know-about-react-scripts/
+
+react-scripts build already uses the best configuration of web pack under the hood for the website.
+We generally don't really need to worry about it.
+
+yarn global add serve
+
+https://classic.yarnpkg.com/lang/en/docs/cli/global/
+yarn add command adds a package to the current user package.
+
+global is the scope
+
+serve is a package that runs a static site. Our site is not really static.
+I'll need to build a configuration for this site.
+
+
+serve -s build
+
+I ran
+
+yarn build
+
+I should have done this in another repo, but I guess this is my test for later.
+
