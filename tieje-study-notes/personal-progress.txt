@@ -59,4 +59,20 @@ What I'll need to:
     - figure out how to serve the backend data to django and how to save it
 - Frontend
     - yarn build in Frontend folder
-    - install nginx on Frontend
+    - install nginx on Frontend container
+
+Oct 19
+- set up nginx on docker container for the frontend
+
+20
+- create presentation and document
+- research volumes
+
+21
+- set up gunicorn on backend docker container
+
+22
+- set up database and volumes on docker container
+
+23
+- set up jelastic docker compose

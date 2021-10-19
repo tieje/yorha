@@ -26,3 +26,7 @@ yarn build
 
 I should have done this in another repo, but I guess this is my test for later.
 
+10/19/2021
+
+Since I won't be needing to mess around with webpack configuration, I'll move this to complete notes.
+
