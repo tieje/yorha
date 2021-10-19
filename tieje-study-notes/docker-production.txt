@@ -51,3 +51,25 @@ https://jelastic.com/blog/docker-engine-automatic-install-swarm-connect/
 https://jelastic.com/blog/docker-engine-auto-install-connect-ssh-portainer/
 https://jelastic.com/blog/docker-engine-auto-install-connect-ssh-portainer/?utm_source=blog-docker-engine&utm_medium=part1
 I might not need to push a container if I can deploy it from the github repo.
+
+10/19/2021
+
+https://docs.docker.com/compose/extends/#different-environments
+According to this, docker-compose.override.yml is supposed to be the dev configuration that is used by default when docker-compose up is normally run.
+
+We don't actually need a production.yml since if specify
+docker-compose -f docker-compose.yml
+This command will not run the docker-compose.override.yml file as would normally occur.
+
+There might need to be two different files.
+- running the application locally using commands like npm start or manage.py runserver
+- running the production build of the application from nginx and gunicorn containers
+
+There is a reason why its suggested to have three files though.
+Not all commands are going to be same.
+
+docker-compose up will read the normal docker-compose.yml and the docker-compose.override.yml files.
+For the production command above, docker-compose will read the base file and then the production file for the production build.
+
+I'm going to need to get good at docker again...
+
