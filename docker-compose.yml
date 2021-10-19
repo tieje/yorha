@@ -12,13 +12,6 @@ services:
       - ./Backend/env/.env.dev
     # Volumes are mounted, meaning any changes made on the host machine will be reflected in the containers which mount the volume
     # [source]:[target] Meaning, that the backend folder in the container is bind mounted to the backend directory
-    volumes:
-      - ./Backend:/backend
-    # Ports are [host]:[container]. This means that the host machine will be listening to 8000 port and the container will be listening to the 8000 port as well.
-    # https://docs.docker.com/compose/compose-file/compose-file-v3/#ports
-    ports:
-      - 8000:8000
-    # Starts the database service 'db' before the backend service:
     depends_on:
       - db
   db:

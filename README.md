@@ -631,12 +631,46 @@ It looks like I should be able to run a custom docker-compose command if I reall
 Worst case scenario, I'll be hosting the site from laptop.
 
 I'm not going to use the docker override file name because I won't want to override it every time.
+
 https://medium.com/softonic-eng/docker-compose-from-development-to-production-88000124a57c
+
 This is somewhat helpful.
+
 https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
-This guide is very helpful. I think it answers a lot of my questions.
-The only problem is learning how to use nginx properly.
-I should spend the rest of today and the rest of tomorrow figuring out nginx.
+
+This guide is very helpful. I think it answers a lot of my questions. The only problem is learning how to use nginx properly. I should spend the rest of today and the rest of tomorrow figuring out nginx.
+
+https://docs.docker.com/compose/extends/#different-environments
+According to this, docker-compose.override.yml is supposed to be the dev configuration that is used by default when docker-compose up is normally run.
+
+We don't actually need a production.yml since if specify
+`docker-compose -f docker-compose.yml`
+This command will not run the docker-compose.override.yml file as would normally occur.
+
+There might need to be two different files.
+- running the application locally using commands like npm start or manage.py runserver
+- running the production build of the application from nginx and gunicorn containers
+
+There is a reason why its suggested to have three files though. Not all commands are going to be same.
+
+docker-compose up will read the normal docker-compose.yml and the docker-compose.override.yml files. For the production command above, docker-compose will read the base file and then the production file for the production build.
+
+I'm going to need to get good at docker again...
++ created the docker-compose.override.yml file
+    + it works as intended
+- create the production.yml file
+    - https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
+    - According to the guide, I should create an entirely separate docker container that handles nginx functions, which makes sense.
+
+Right now, I just need to learn how to use nginx. The other concepts are easy enough. Even configuring the docker compose for production is easy enough.
+
+from this search, I'm looking up nginx stuff
+https://duckduckgo.com/?q=nginx+tutorial&ia=web
+
+I'm going to need to do quite a bit of reading on nginx. I'll probably even install it locally.
+
+~~ nginx grind ~~
+
 
 
 ### Limited ChatApp Core
