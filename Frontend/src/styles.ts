@@ -186,14 +186,6 @@ export const MapContainer = styled.div`
     padding: 1rem;
     margin: 1rem;
 `
-export const ProximityGenderContainer = styled.div`
-    display: flex;
-    background-color: cyan;
-    flex-grow: 1;
-    border: 1px solid black;
-    padding: 1rem;
-    margin: 1rem;
-`
 export const ResultsChatContainer = styled.div`
     display: flex;
     flex-direction: column;
