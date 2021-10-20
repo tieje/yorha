@@ -8,10 +8,15 @@
 
 
 //something like:
-import React, { Component, useState } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from 'react';
+import ReactDOM, { render } from 'react-dom';
+import styled from 'styled-components';
+import { isThisTypeNode } from 'typescript';
+
 
 class GenderSelect extends Component<any,any>{
+
+
   constructor(props:string){
     super(props);
     this.state = {
@@ -24,18 +29,32 @@ class GenderSelect extends Component<any,any>{
   });
 }; 
 
+GenderStyleContainer=styled.div`
+  display: flex;
+  background-color: #3E4046;
+  color: #FFEDE7;
+  font-family: 'Space Mono', monospace;
+  flex-grow: 1;
+  border: 1px solid black;
+  padding: 1rem;
+  margin: 1rem;
+`
+GenderInput=styled.input`
+  cursor: pointer;
+`
 handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
   formSubmitEvent.preventDefault();
   console.log('Pronouns selected: ', this.state.selectedOption);
 };
 
- render() {
+ render(): JSX.Element {
   return (
+    <this.GenderStyleContainer>
       <form onSubmit={this.handleFormSubmit}>
         <p> Select pronouns:</p>
         <div className = "form-check">
           <label>
-          <input 
+          <this.GenderInput
             type="radio" 
             name="gender-select"
             id="man" 
@@ -50,7 +69,7 @@ handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
 
           <div className = "form-check">
           <label>
-          <input 
+          <this.GenderInput 
             type="radio" 
             name="gender-select"
             id="woman" 
@@ -64,7 +83,7 @@ handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
           </div>
           <div className = "form-check">
           <label>
-          <input 
+          <this.GenderInput 
             type="radio" 
             name="gender-select"
             id="other" 
@@ -82,10 +101,15 @@ handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
             </button>
           </div>
     </form>
-   );
+    </this.GenderStyleContainer>
+  );
   }
+
 }
 
 export default GenderSelect;
 
-//to do:add styling,  connect to backend 
+
+
+
+//to do: connect to backend 
