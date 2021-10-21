@@ -32,3 +32,17 @@ https://www.devdungeon.com/content/nginx-tutorial
 Original source of nginx + docker
 https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
 
+10/20/2021
+
+I need better resources
+quora
+https://www.quora.com/What-are-some-good-online-resources-to-learn-Nginx?share=1
+
+10/21/2021
+
+https://www.linode.com/docs/guides/how-to-configure-nginx/#sph_preserve-a-working-configuration
+http://www.aosabook.org/en/nginx.html
+
+I've read through the others and this might be the best resource overall.
+https://www.javatpoint.com/nginx-directive-and-context
+
