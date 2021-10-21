@@ -46,3 +46,12 @@ http://www.aosabook.org/en/nginx.html
 I've read through the others and this might be the best resource overall.
 https://www.javatpoint.com/nginx-directive-and-context
 
+It's unavoidable. I'm going to need create an example project to get this website running on an nginx docker container.
+It's time to start doing.
+
+I'll create a docker file and only run that service with docker-compose
+
+docker-compose up -d nginx
+
+sudo docker exec -it yorha_nginx_1 /bin/bash
+
