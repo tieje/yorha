@@ -11,7 +11,6 @@
 import React, { Component } from 'react';
 import ReactDOM, { render } from 'react-dom';
 import styled from 'styled-components';
-import { isThisTypeNode } from 'typescript';
 
 
 class GenderSelect extends Component<any,any>{
