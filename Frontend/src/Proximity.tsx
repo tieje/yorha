@@ -18,20 +18,22 @@ class Proximity extends React.Component {
     }
     
     handleOnChange = (e:any) => this.setState({ value: ((e.target as HTMLInputElement).value )})
-    
     handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
         formSubmitEvent.preventDefault();
-        console.log(this.state.value)
+        console.log('Proximity set at: ', this.state.value);
       };
+    
     render (){
         return ( 
             <ProxStyleContainer>
+                <form onSubmit={this.handleFormSubmit}>
                 <input type="range" min={0} max={50} value={this.state.value} className="slider" onChange={this.handleOnChange} />
                 <div className="value">{this.state.value}</div>
+                <button className="submit">Submit</button>
+                </form>
             </ProxStyleContainer>
         )
     }
 }
 
 export default Proximity;
-
