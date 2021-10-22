@@ -9,6 +9,8 @@ import { useState } from 'react'
 import { Map } from './GoogleMap';
 import GenderSelect  from './Gender';
 import GenderStyleContainer from './Gender';
+import ProxStyleContainer from './Proximity';
+import Proximity from './Proximity';
 
 export const App = () => {
     const { hoverItemId } = useAppState()
@@ -35,6 +37,9 @@ export const App = () => {
                     <GenderStyleContainer>
                         <GenderSelect />
                     </GenderStyleContainer>
+                    <ProxStyleContainer>
+                        <Proximity />
+                    </ProxStyleContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>
