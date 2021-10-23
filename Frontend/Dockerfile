@@ -14,3 +14,5 @@ COPY package.json package-lock.json /frontend/
 RUN npm install
 # add ap
 COPY . /frontend
+
+EXPOSE 3000

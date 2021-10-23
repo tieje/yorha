@@ -4,6 +4,7 @@ services:
   backend:
     build: ./Backend
     image: backend:1
+<<<<<<< HEAD
     # "manage.py" is the default Django app management tool. `runserver` starts the development server on the specified host and port using Django's built-in webserver.
     # Django's development server is not suitable for production; you'll need to replace the command with either gunicorn, nginx, or heroku at some point just before production
     command: python manage.py runserver 0.0.0.0:8000
@@ -12,6 +13,9 @@ services:
       - ./Backend/env/.env.dev
     # Volumes are mounted, meaning any changes made on the host machine will be reflected in the containers which mount the volume
     # [source]:[target] Meaning, that the backend folder in the container is bind mounted to the backend directory
+=======
+    # depends on means that the db service will be started before the backend service
+>>>>>>> fcd4747 (work in progress)
     depends_on:
       - db
   db:
@@ -40,6 +44,7 @@ services:
   frontend:
     build: ./Frontend/
     image: frontend:1
+<<<<<<< HEAD
     command: ["npm", "start"]
     volumes:
       - ./Frontend:/Frontend
@@ -54,3 +59,7 @@ services:
 volumes:
   # Creates a new named volume managed by Docker. This is where the database's persistent data files will be saved:
   postgres_data:
+=======
+    depends_on:
+      - backend
+>>>>>>> fcd4747 (work in progress)

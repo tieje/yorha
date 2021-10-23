@@ -11,9 +11,6 @@ services:
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#ports
     ports:
       - 8000:8000
-    # depends on means that the db service will be started before the backend service
-    depends_on:
-      - db
   db:
     volumes:
       # the name of the host source container is postgres_data. The container-destination is the second part. This will be where the data will be stored on my local machine.
@@ -26,8 +23,6 @@ services:
       - ./Frontend:/Frontend
     ports:
       - 3000:3000
-    depends_on:
-      - backend
   # for when the time comes.
   # the book says we need a volume within the db service and a volume outside of the db service...
       # it's totally possible to just create a new volume every time, but it's simple extension of code to make it so that the volume is available to multiple services.
