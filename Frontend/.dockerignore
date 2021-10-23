@@ -11,6 +11,6 @@ src/yaherd.css
 # Artifacts that will be built during image creation.
 # This should contain all files created during `npm run build`.
 
-# for later when you figure out how to incorporate node_modules folderr properly
+# for later when you figure out how to incorporate node_modules folder properly
 # build
 # node_modules
