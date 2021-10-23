@@ -2,12 +2,6 @@
 # I'm going to use the python version that anaconda is currently using on my machine
 FROM python:3.8.5
 
-# Set environment variables.
-# Delete these variables later when in production. The only reason why we have them now is to speed up the build image process of python.
-# Since the image is ephermeral, we can skip the compilation step most of the time.
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
 # Setup GeoDjango
 # https://stackoverflow.com/questions/60403731/geodjango-and-postgis-setup-in-docker
 RUN apt-get update &&\

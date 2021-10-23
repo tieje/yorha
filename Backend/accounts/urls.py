@@ -1,4 +1,3 @@
-from django.urls import path
 from .views import AccountViewSet, ArchetypeViewSet
 from rest_framework.routers import DefaultRouter
 # I have decided to use the DefaultRouter over the SimpleRouter because the Default includes hyperlinks
@@ -6,7 +5,6 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register('accounts', AccountViewSet, basename='accounts')
 router.register('archetypes', ArchetypeViewSet, basename='archetypes')
-
 urlpatterns = router.urls
 """
 [

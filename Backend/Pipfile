@@ -18,6 +18,8 @@ django-graphiql = "*"
 pyyaml = "*"
 uritemplate = "*"
 drf-yasg = "*"
+gunicorn = "*"
+sendgrid = "*"
 
 [dev-packages]
 
