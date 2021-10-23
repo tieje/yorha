@@ -65,6 +65,7 @@ volumes:
 =======
 services:
   nginx:
+    container_name: prod_nginx
     restart: always
     build:
       context: ./nginx
@@ -72,4 +73,13 @@ services:
       - "80:80"
     depends_on:
       - frontend
+<<<<<<< HEAD
 >>>>>>> fcd4747 (work in progress)
+=======
+  backend:
+    container_name: prod_backend
+  frontend:
+    container_name: prod_frontend
+  db:
+    container_name: prod_db
+>>>>>>> 55741af (prior to rebasing from staging)

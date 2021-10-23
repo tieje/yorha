@@ -1,5 +1,6 @@
 services:
   backend:
+    container_name: dev_backend
     # "manage.py" is the default Django app management tool. `runserver` starts the development server on the specified host and port using Django's built-in webserver.
     # Django's development server is not suitable for production; you'll need to replace the command with either gunicorn, nginx, or heroku at some point just before production
     command: python manage.py runserver 0.0.0.0:8000
@@ -12,15 +13,17 @@ services:
     ports:
       - 8000:8000
   db:
+    container_name: dev_db
     volumes:
       # the name of the host source container is postgres_data. The container-destination is the second part. This will be where the data will be stored on my local machine.
       - postgres_data:/var/lib/postgresql/data/
     ports:
       - 5432:5432
   frontend:
+    container_name: dev_frontend
     command: ["npm", "start"]
     volumes:
-      - ./Frontend:/Frontend
+      - ./Frontend:/frontend
     ports:
       - 3000:3000
   # for when the time comes.
