@@ -111,3 +111,8 @@ docker-compose down --remove-orphans
 I won't be able to use docker to set up a database. I'll need to rely on a database hosting service.
 It shouldn't be that bad... I hope.
 
+10/24/2021
+https://pawamoy.github.io/posts/docker-compose-django-postgres-nginx/
+This might be it.
+
+Gottem

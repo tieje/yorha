@@ -34,13 +34,13 @@ services:
       context: ./nginx
     ports:
       - "80:80"
+      - "89:89"
     depends_on:
       - frontend
     networks:
       - default
-volumes:
-  # Creates a new named volume managed by Docker. This is where the database's persistent data files will be saved.
-  postgres_data:
-
+    volumes:
+      - ./nginx/sites-available/:/etc/nginx/conf.d/sites-available
+      - ./Backend/staticfiles:/Backend/staticfiles
 networks:
   default:

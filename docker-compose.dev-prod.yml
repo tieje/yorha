@@ -26,6 +26,8 @@ services:
     ports:
       - 5432:5432
   backend:
+    volumes:
+      - ./Backend:/backend
     container_name: prod-backend
     command: gunicorn config.wsgi
     # Sets the service's environment variables. Use '.env.prod' for production:
@@ -38,6 +40,8 @@ services:
     networks:
       - default
   frontend:
+    volumes:
+      - ./Frontend:/frontend
     command: serve -s build
     container_name: prod-frontend
     ports:
@@ -60,10 +64,14 @@ services:
       context: ./nginx
     ports:
       - "80:80"
+      - "89:89"
     depends_on:
       - frontend
     networks:
       - default
+    volumes:
+      - ./nginx/sites-available/:/etc/nginx/conf.d/sites-available
+      - ./Backend/staticfiles:/Backend/staticfiles
 volumes:
   # Creates a new named volume managed by Docker. This is where the database's persistent data files will be saved.
   postgres_data:
