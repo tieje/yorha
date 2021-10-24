@@ -57,3 +57,7 @@ I don't actually need to implement the apollo state features since I already hav
 I don't need to rewrite the entire state management system. I just need to construct the graphQL statements.
 I don't necessarily need to use the Apollo state management library, though it would be more technically sound.
 
+10/24/2021
+
+And here I am, back again.
+

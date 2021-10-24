@@ -23,3 +23,7 @@ example repo name
 appsvcsample/static-site
 https://hub.docker.com/r/appsvcsample/static-site
 
+10/24/2021
+
+I won't be able to host this thing in time cuz I'll need more time prior to the presentation.
+

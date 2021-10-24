@@ -76,3 +76,11 @@ Oct 19
 
 23
 - set up jelastic docker compose
+
+10/24/2021
+
+nginx and gunicorn are set up but in setting them I learned of limitations that will prevent hosting on jelastic in the near future.
+I'll worry about those later.
+For now, I'll need to rip out the useReducer() state manager with Apollo.
+It's a monster of my own creation, but it's an opponent worthy of my final week prior to presentation.
+
