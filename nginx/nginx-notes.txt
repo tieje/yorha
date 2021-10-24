@@ -2,7 +2,7 @@
 
 docker-compose up -d nginx
 
-docker exec -it yorha_nginx_1 /bin/bash
+docker exec -it prod-nginx /bin/bash
 
 I moved the original docker-compose.yml and the override to the docker compose file folder so I can practice.
 
@@ -10,7 +10,7 @@ docker-compose up does not work very well with just isolating one service from m
 
 It's working now, so I guess I'll test out making some actual configurations.
 
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build nginx
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
 Supposedly, it's supposed to be docker compose without the up in the beginning at least
 
@@ -47,7 +47,7 @@ I'll need to see if I need to build a configuration for either sites-available o
 Actually... I'll need to set up a proxy pass because I'll be using this as a reverse proxy.
 
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.override.yml up -d
-docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.override.yml up -d --build
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml -f docker-compose.override.yml up -d --build nginx
 
 http://localhost:80
 
@@ -59,5 +59,55 @@ I'm so lost...
 I don't know what to do...
 I'll need to look at how nginx proxy pass works later as well as other people's configurations.
 
-There seems 
+https://www.domysee.com/blogposts/reverse-proxy-nginx-docker-compose
+
+communication between containers in docker-compose
+https://stackoverflow.com/questions/61244829/docker-compose-containers-communication
+
+networking in compose
+https://docs.docker.com/compose/networking/
+
+https://medium.com/@caysever/docker-compose-network-b86e424fad82
+
+https://www.tutorialworks.com/container-networking/
+
+https://netbeez.net/blog/networking-with-docker/
+
+https://stackoverflow.com/questions/11693135/multiple-websites-on-nginx-sites-available
+
+https://www.freecodecamp.org/news/docker-nginx-letsencrypt-easy-secure-reverse-proxy-40165ba3aee2/
+
+ssl for later
+https://www.freecodecamp.org/news/docker-compose-nginx-and-letsencrypt-setting-up-website-to-do-all-the-things-for-that-https-7cb0bf774b7e/
+
+
+https://stackoverflow.com/questions/59973882/proxying-react-app-using-nginx-on-docker-compose
+https://geekflare.com/nginx-static-files-node-js/
+
+deleted the try_files part
+
+seems to work now.
+
+backend api runs without proper styling though
+https://stackoverflow.com/questions/20181121/django-admin-not-working-ugly-serving-with-nginx-and-gunicorn
+
+It's an nginx problem, not a gunicorn problem.
+
+The problem lies mainly with gunicorn and nginx. Supposedly there is a socket file that gunicorn is supposed to generate.
+But it doesn't. So that sucks...
+nginx is supposed to use this gunicorn socket file for it's interpretation.
+It's so close. Text shows up fine.
+I might need to delve deep into gunicorn and nginx to determine what the issue is...
+Otherwise, there is alternative I could use...
+
+https://uwsgi-docs.readthedocs.io/en/latest/tutorials/Django_and_nginx.html
+
+Consider using this instead of gunicorn. I'm running into rather... unsolvable problems with gunicorn right now.
+
+docker-compose -f docker-compose.yml -f docker-compose.dev-prod.yml up -d --build
+
+docker-compose down --remove-orphans
+
+I won't be able to use docker to set up a database. I'll need to rely on a database hosting service.
+It shouldn't be that bad... I hope.
 

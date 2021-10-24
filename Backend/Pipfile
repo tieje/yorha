@@ -20,6 +20,7 @@ uritemplate = "*"
 drf-yasg = "*"
 gunicorn = "*"
 sendgrid = "*"
+whitenoise = "*"
 
 [dev-packages]
 

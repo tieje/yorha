@@ -1,3 +1,5 @@
 FROM nginx
 COPY nginx.conf /etc/nginx/
-COPY semblance_reverse_proxy.conf /etc/nginx/conf.d/
+#CMD mkdir /etc/nginx/conf.d/sites-available /etc/nginx/conf.d/sites-enabled
+COPY sites-available/ /etc/nginx/conf.d/sites-available/
+COPY sites-enabled/ /etc/nginx/conf.d/sites-enabled/

@@ -4,52 +4,13 @@ services:
   backend:
     build: ./Backend
     image: backend:1
-<<<<<<< HEAD
     # "manage.py" is the default Django app management tool. `runserver` starts the development server on the specified host and port using Django's built-in webserver.
     # Django's development server is not suitable for production; you'll need to replace the command with either gunicorn, nginx, or heroku at some point just before production
-    command: python manage.py runserver 0.0.0.0:8000
-    # Sets the service's environment variables. Use '.env.prod' for production.
     env_file:
       - ./Backend/env/.env.dev
-    # Volumes are mounted, meaning any changes made on the host machine will be reflected in the containers which mount the volume
-    # [source]:[target] Meaning, that the backend folder in the container is bind mounted to the backend directory
-=======
-    # depends on means that the db service will be started before the backend service
->>>>>>> fcd4747 (work in progress)
-    depends_on:
-      - db
-  db:
-    platform: linux/amd64
-    # 12 is used instead of 13 due to post-gis docker documentation
-    image: postgis/postgis
-    # By default, PostgreSQL databases are named the same as the user which creates them. If the user exists, then the db is named after the user. To keep it simple, it's best to name one or the other.
-    # Because there are workarounds required when the user is named other than postgres, to keep things simple, I'll just use the default user and make sure there is a good password.
-    # <Postgres database user was here prior to security update>
-
-    # The database password is a required parameter.
-    # "trust" authentication is set up by default on the database service, which means anyoneone who has access to that container is assumed to also be authorized to access the database, so no password will be required.
-    # However, we need this password when connecting from outside the container, so it will be needed from the Django settings file
-    # <Postgres database password was here prior to security update>
-
-    # By default this is md5, which is the "intermediate" form of security available. I should consider upgrading to scram_sha256 later as it is the most secure.
-    # https://www.postgresql.org/docs/current/auth-password.html
-    # POSTGRES_HOST_AUTH_METHOD
-    env_file:
-      - ./Database/env/.env.dev
-    volumes:
-      # Tells Docker to use the named volume declared below for database data persistence. The container-destination is the second part; This will be where the data will be mounted inside the container.
-      - postgres_data:/var/lib/postgresql/data/
-    ports:
-      - 5432:5432
   frontend:
     build: ./Frontend/
     image: frontend:1
-<<<<<<< HEAD
-    command: ["npm", "start"]
-    volumes:
-      - ./Frontend:/Frontend
-    ports:
-      - 3000:3000
     depends_on:
       - backend
   # For when the time comes. The book says we need a volume within the db service and a volume outside of the db service...
@@ -59,7 +20,3 @@ services:
 volumes:
   # Creates a new named volume managed by Docker. This is where the database's persistent data files will be saved:
   postgres_data:
-=======
-    depends_on:
-      - backend
->>>>>>> fcd4747 (work in progress)

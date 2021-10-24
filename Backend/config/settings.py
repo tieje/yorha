@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.gis',
+    # makes the api look nice in production
+    'whitenoise.runserver_nostatic',
+
     # Required for graphql:
     'django.contrib.staticfiles',
 
@@ -78,23 +81,24 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
         # Only authenticated users have access to the API
-        #'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ],
-    #'DEFAULT_AUTHENTICATION_CLASSES': [
-        # temporary while I figure out apollo
-        # 'rest_framework.authentication.BasicAuthentication',
-        # Sessions are used to power the Browsable API and the ability to log in
-        # and log out of it.
-        # 'rest_framework.authentication.SessionAuthentication',
-        # TokenAuthentication is stored on the user's browser in the form of a
-        # cookie or other data
-        # 'rest_framework.authentication.TokenAuthentication',
-    #],
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    # temporary while I figure out apollo
+    # 'rest_framework.authentication.BasicAuthentication',
+    # Sessions are used to power the Browsable API and the ability to log in
+    # and log out of it.
+    # 'rest_framework.authentication.SessionAuthentication',
+    # TokenAuthentication is stored on the user's browser in the form of a
+    # cookie or other data
+    # 'rest_framework.authentication.TokenAuthentication',
+    # ],
 }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     # 'django.middleware.csrf.CsrfViewMiddleware',
@@ -187,6 +191,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# If you ever update static folder or static files, be sure to run the following command:
+#  docker-compose exec web python manage.py collectstatic
 
 # https://stackoverflow.com/questions/49189402/auth-user-groups-fields-e304-reverse-accessor-for-user-groups-clashes-with
 AUTH_USER_MODEL = 'accounts.CustomUser'

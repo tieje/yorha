@@ -25,5 +25,4 @@ RUN /usr/local/bin/python -m pip install --upgrade pip\
 # This copies everything from the current directory, to the backend directory on the system.
 # The current directory will be backend on my local computer.
 COPY . /backend
-
 EXPOSE 8000
