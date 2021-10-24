@@ -1,4 +1,4 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ProximityGenderContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer } from './styles'
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
@@ -7,10 +7,13 @@ import { useAppState } from './state/AppStateContext';
 import { ArchetypeDescription } from './ArchetypeDescription';
 import { useState } from 'react'
 import { Map } from './GoogleMap';
+import GenderSelect from './Gender';
+import GenderStyleContainer from './Gender';
+import Proximity from './Proximity';
 
 export const App = () => {
     const { hoverItemId } = useAppState()
-    const [ hoverId, setHoverId] = useState(hoverItemId)
+    const [hoverId, setHoverId] = useState(hoverItemId)
     const updateArchId = (id: string): void => {
         setHoverId(id)
     }
@@ -18,9 +21,9 @@ export const App = () => {
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId}/>
+                    <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId} />
                     <ArchetypesChosen>
-                        <ArchetypeDescription id={hoverId}/>
+                        <ArchetypeDescription id={hoverId} />
                         <ArchetypesChosenList />
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
@@ -30,9 +33,10 @@ export const App = () => {
                     <MapContainer>
                         <Map />
                     </MapContainer>
-                    <ProximityGenderContainer>
-                        there
-                    </ProximityGenderContainer>
+                    <GenderStyleContainer>
+                        <GenderSelect />
+                    </GenderStyleContainer>
+                    <Proximity />
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>

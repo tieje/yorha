@@ -7,19 +7,24 @@ from django.contrib.auth import get_user_model # the user model is CustomUser() 
 from .serializers import UserSerializer, ArchetypeSerializer
 from rest_framework import viewsets
 from .models import Archetype
-# Create your views here.
+
 
 # basic views using rest_framework generics
 user_model = get_user_model()
 
 # this is the viewset that we'll be using
-# I might run into a problem where users could potentially edit information on other user's accounts. I'll need to test this.
+# I might run into a problem where users could potentially edit information on
+# other user's accounts. I'll need to test this.
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = user_model.objects.all()
     serializer_class = UserSerializer
+
+
 class ArchetypeViewSet(viewsets.ModelViewSet):
     queryset = Archetype.objects.all()
     serializer_class = ArchetypeSerializer
+
+
 # Below is what it would look like if we did not use viewsets
 """
 class AccountList(generic.ListAPIView):
