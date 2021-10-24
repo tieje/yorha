@@ -1,6 +1,8 @@
+"""Register your models here."""
 from django.contrib import admin
 from .models import CustomUser, Archetype
-# Register your models here.
+
+
 models = [
     CustomUser,
     Archetype,

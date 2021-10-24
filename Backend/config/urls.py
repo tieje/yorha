@@ -13,13 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from allauth.account.views import ConfirmEmailView
 from django.contrib import admin
 from django.urls import path, include, re_path
+from drf_yasg import openapi # used for schema
+from drf_yasg.views import get_schema_view # used in schema
 from graphene_django.views import GraphQLView
 from rest_framework import permissions # used in schema
-from drf_yasg.views import get_schema_view # used in schema
-from drf_yasg import openapi # used for schema
-from allauth.account.views import ConfirmEmailView
 
 schema_view = get_schema_view( # used in swagger
    openapi.Info(
@@ -48,6 +48,6 @@ urlpatterns = [
       'swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui( # schema documentation
         'redoc', cache_timeout=0), name='schema-redoc'),
-    path(r"graphql", GraphQLView.as_view(graphiql=True)),
+    path('graphql', GraphQLView.as_view(graphiql=True)),
 ]
 # https://github.com/django/django/blob/master/django/urls/conf.py
