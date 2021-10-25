@@ -12,7 +12,7 @@ const ProxStyleContainer = styled.div`
     margin: 1rem;
 `;
 
-class Proximity extends React.Component {
+class Proximity extends React.Component<any, any> {
     state = {
         value: 0
     }
@@ -23,7 +23,7 @@ class Proximity extends React.Component {
         console.log('Proximity set at: ', this.state.value);
       };
     
-    render (){
+    render(): JSX.Element {
         return ( 
             <ProxStyleContainer>
                 <form onSubmit={this.handleFormSubmit}>
