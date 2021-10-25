@@ -25,7 +25,13 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
-ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    '127.0.0.1',
+    '172.18.0.3', # yorha_default (Docker network) IP address for backend
+    'backend', # Alias for 172.18.0.3
+    'localhost', # Alias for 127.0.0.1, usually
+    ]
 
 INSTALLED_APPS = [
     'django.contrib.admin',

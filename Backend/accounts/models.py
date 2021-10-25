@@ -2,7 +2,6 @@ from django.contrib.gis.db import models
 from django.contrib.auth.models import AbstractUser
 from django.contrib.gis.geos import Point
 from .utils import ChoiceEnum
-# We'll be extending AbstractUser since it's simpler than AbstractBaseUser
 
 
 class Archetype(models.Model):
@@ -15,19 +14,21 @@ class Archetype(models.Model):
         return self.name
 
 
+# We'll be extending AbstractUser since it's simpler than AbstractBaseUser
 class CustomUser(AbstractUser):
-    # there are potentially two models. One from the AbstractUser and one from the GIS. I might need to pick one.
+    # There are potentially two models. One from the AbstractUser and one from the GIS. We might need to pick one.
     class Genders(ChoiceEnum):
         FEMALE = 'female'
         MALE = 'male'
         NONBINARY = 'non-binary'
-    location = models.PointField(geography=True, default=Point(0.0, 0.0))
+    location = models.PointField(
+        geography=True, default=Point(0.0, 0.0), blank=True)
     identify_as = models.ManyToManyField(
-        Archetype, related_name='Archetype.name+')
+        Archetype, related_name='Archetype.name+', blank=True)
     search_for = models.ManyToManyField(
-        Archetype, related_name='Archetype.name+')
+        Archetype, related_name='Archetype.name+', blank=True)
     gender = models.CharField(
-        max_length=10, choices=Genders.choices(), default=Genders.NONBINARY.value)
+        max_length=10, choices=Genders.choices(), default=Genders.NONBINARY.name)
 
 
 """
