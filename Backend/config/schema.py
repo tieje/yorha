@@ -35,7 +35,7 @@ class ArchetypeType(DjangoObjectType):
         fields = '__all__'
 
 
-# This class is more approprate for the gender argument of the AccountType in
+# This class is more approprate for the gender argument of the accounts field in
 # the schema than graphene.String, but it's not working and I don't have time
 # right now to figure it out. Basically, when you use this class, the resolver
 # gets the Enum.name (e.g. "NONBINARY") instead of the value (e.g. "non-binary")
