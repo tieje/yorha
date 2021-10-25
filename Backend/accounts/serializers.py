@@ -18,3 +18,31 @@ class ArchetypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Archetype
         fields = "__all__"
+
+
+"""
+The above serializer wasn't working for location data. I'll have to ask Thomas
+about that. Meanwhile, the serializer below works.
+
+-- Justin
+
+"""
+import json
+from django.contrib.gis.db import models
+import graphene
+from graphene_django.converter import convert_django_field
+
+
+class GeoJSON(graphene.Scalar):
+
+    @classmethod
+    def serialize(cls, value):
+        return json.loads(value.geojson)
+
+
+@convert_django_field.register(models.GeometryField)
+def convert_field_to_geojson(field, registry=None):
+    return graphene.Field(
+        GeoJSON,
+        description=field.help_text,
+        required=not field.null)
