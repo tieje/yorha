@@ -41,7 +41,7 @@ class ArchetypeType(DjangoObjectType):
 # gets the Enum.name (e.g. "NONBINARY") instead of the value (e.g. "non-binary")
 #
 # --Justin
-# GendersEnum = graphene.Enum.from_enum(CustomUser.Genders)
+# GendersEnum = graphene.Enum.from_enum(user_model.Genders)
 
 class Query(graphene.ObjectType):
     """
