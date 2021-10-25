@@ -20,6 +20,13 @@ class ArchetypeSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+"""
+The above serializer wasn't working for location data. I'll have to ask Thomas
+about that. Meanwhile, the serializer below works.
+
+-- Justin
+
+"""
 import json
 from django.contrib.gis.db import models
 import graphene
