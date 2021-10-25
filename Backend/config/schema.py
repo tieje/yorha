@@ -45,9 +45,15 @@ class Query(graphene.ObjectType):
         # Arguments available:
         id=graphene.ID(),
         is_staff=graphene.Boolean(),
-        distance=graphene.Int(),
+        distance=graphene.Int(
+            description='Maximum distance from arg `location` in miles'
+        ),
         gender=graphene.String(),
-        location=graphene.String()
+        location=graphene.String(
+            description='The location from which to measure `distance`. \
+                A point in WKT format: "POINT(longitude latitude)" \
+                e.g.: "POINT(50 -50)"'
+        )
     )
     archetypes = DjangoListField(ArchetypeType)
 
