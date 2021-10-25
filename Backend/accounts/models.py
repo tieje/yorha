@@ -21,11 +21,12 @@ class CustomUser(AbstractUser):
         FEMALE = 'female'
         MALE = 'male'
         NONBINARY = 'non-binary'
-    location = models.PointField(geography=True, default=Point(0.0, 0.0))
+    location = models.PointField(
+        geography=True, default=Point(0.0, 0.0), blank=True)
     identify_as = models.ManyToManyField(
-        Archetype, related_name='Archetype.name+')
+        Archetype, related_name='Archetype.name+', blank=True)
     search_for = models.ManyToManyField(
-        Archetype, related_name='Archetype.name+')
+        Archetype, related_name='Archetype.name+', blank=True)
     gender = models.CharField(
         max_length=10, choices=Genders.choices(), default=Genders.NONBINARY.name)
 

@@ -3,6 +3,7 @@ Defines the GraphQL Schema using Graphene.
 """
 from accounts.models import Archetype, CustomUser
 from django.contrib.auth import get_user_model
+from django.contrib.gis.measure import Distance
 import graphene
 from graphene_django import DjangoObjectType, DjangoListField
 
@@ -11,14 +12,17 @@ from graphene_django import DjangoObjectType, DjangoListField
 user_model = get_user_model()
 
 class AccountType(DjangoObjectType):
+    """A user account."""
     class Meta:
         model = user_model
         fields = (
             'id',
+            'date_joined',
             'gender',
             'identify_as',
             'is_staff',
             'is_active',
+            'location',
             'search_for',
             'username',
         )
@@ -41,12 +45,15 @@ class Query(graphene.ObjectType):
         # Arguments available:
         id=graphene.ID(),
         is_staff=graphene.Boolean(),
+        distance=graphene.Int(),
         gender=graphene.String(),
+        location=graphene.String()
     )
     archetypes = DjangoListField(ArchetypeType)
 
     def resolve_accounts(
-        root, info, id=None, is_staff=None, gender=None):
+        root, info, id=None, is_staff=None, gender=None, distance=None,
+        location=None):
         """
         Returns a queryset and processes arguments to GraphQL queries.
 
@@ -66,6 +73,11 @@ class Query(graphene.ObjectType):
 
         if gender is not None:
             query_set = query_set.filter(gender=gender)
+
+        if distance is not None and location is not None:
+            query_set = query_set.filter(
+                location__dwithin=(location, Distance(mi=distance))
+            )
 
         return query_set
 
