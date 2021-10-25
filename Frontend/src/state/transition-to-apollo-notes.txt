@@ -1,0 +1,10 @@
+10/25/2021
+
+https://www.apollographql.com/docs/react/local-state/local-state-management/
+
+I'm going to need to switch the state management system with apollo.
+
+localStorage vs Apollo Client cache
+
+local-only fields: define what happens when
+
