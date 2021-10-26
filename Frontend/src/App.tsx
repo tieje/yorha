@@ -1,4 +1,5 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer} from './styles'
+import { Results } from './Results';
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
@@ -41,9 +42,7 @@ export const App = () => {
             </Column>
             <Column>
                 <ResultsChatContainer>
-                    <ResultsContainer>
-                        perfect
-                    </ResultsContainer>
+                    <Results />
                     <ChatContainer>
                         ok
                     </ChatContainer>
