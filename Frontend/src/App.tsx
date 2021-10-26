@@ -12,7 +12,7 @@ import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
 import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
-import { Chat } from './Chat';
+import Chat from './Chat';
 
 
 
