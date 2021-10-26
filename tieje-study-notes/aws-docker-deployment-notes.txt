@@ -2,3 +2,12 @@
 
 https://www.docker.com/blog/docker-compose-from-local-to-amazon-ecs/
 
+It failed and I don't know why. Something in the backend failed.
+
+https://www.quora.com/How-do-I-host-a-website-on-an-Amazon-EC2-instance-running-Linux-with-Apache-given-that-I-already-have-a-registered-GoDaddy-domain-step-by-step?share=1
+
+sudo yum update
+sudo yum install httpd -y
+
+https://www.cyberciti.biz/faq/how-to-install-docker-on-amazon-linux-2/
+

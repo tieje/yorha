@@ -35,3 +35,10 @@ docker-compose exec prod-nginx nginx -s reload
 
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 docker-compose down --remove-orphans
+
+# For running in amazon ecs cloud
+# bind mounts are not supported, which means this flavor of docker compose has no volumes
+
+docker-compose -f docker-compose.yml -f docker-compose.ecs-prod.yml up
+docker-compose down --remove-orphans
+
