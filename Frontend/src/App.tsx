@@ -12,6 +12,10 @@ import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
 import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
+import Chat from './Chat';
+
+
+
 
 export const App = () => {
     const { hoverItemId } = useAppState()
@@ -47,7 +51,7 @@ export const App = () => {
                 <ResultsChatContainer>
                     <Results />
                     <ChatContainer>
-                        ok
+                       <Chat />
                     </ChatContainer>
                 </ResultsChatContainer>
             </Column>
