@@ -3,14 +3,14 @@ version: '3.9'
 services:
   backend:
     build: ./Backend
-    image: backend:1
+    image: tieje/backend:latest
     # "manage.py" is the default Django app management tool. `runserver` starts the development server on the specified host and port using Django's built-in webserver.
     # Django's development server is not suitable for production; you'll need to replace the command with either gunicorn, nginx, or heroku at some point just before production
     env_file:
       - ./Backend/env/.env.dev
   frontend:
     build: ./Frontend/
-    image: frontend:1
+    image: tieje/frontend:latest
     depends_on:
       - backend
   # For when the time comes. The book says we need a volume within the db service and a volume outside of the db service...
