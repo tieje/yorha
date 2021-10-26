@@ -10,7 +10,12 @@ import { useState } from 'react'
 import { Map } from './GoogleMap';
 import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
+import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
+import Chat from './Chat';
+
+
+
 
 export const App = () => {
     const { hoverItemId } = useAppState()
@@ -37,14 +42,16 @@ export const App = () => {
                     <GenderStyleContainer>
                         <GenderSelect />
                     </GenderStyleContainer>
-                    <Proximity />
+                    <ProxStyleContainer>
+                        <Proximity />
+                    </ProxStyleContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>
                 <ResultsChatContainer>
                     <Results />
                     <ChatContainer>
-                        ok
+                       <Chat />
                     </ChatContainer>
                 </ResultsChatContainer>
             </Column>
