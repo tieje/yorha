@@ -28,6 +28,7 @@ services:
       # For example, what if we wanted another container that backs up the data of the volume?
       # https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference
   nginx:
+    image: tieje/nginx:latest
     container_name: prod-nginx
     restart: always
     build:

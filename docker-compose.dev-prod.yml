@@ -1,8 +1,8 @@
 services:
   db:
+    image: postgis/postgis
     platform: linux/amd64
     # 12 is used instead of 13 due to post-gis docker documentation
-    image: postgis/postgis
     # By default, PostgreSQL databases are named the same as the user which creates them. If the user exists, then the db is named after the user. To keep it simple, it's best to name one or the other.
     # Because there are workarounds required when the user is named other than postgres, to keep things simple, I'll just use the default user and make sure there is a good password.
     # <Postgres database user was here prior to security update>
@@ -58,6 +58,7 @@ services:
       # For example, what if we wanted another container that backs up the data of the volume?
       # https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference
   nginx:
+    image: tieje/nginx:latest
     container_name: prod-nginx
     restart: always
     build:
