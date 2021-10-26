@@ -1,4 +1,5 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer} from './styles'
+import { Results } from './Results';
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
@@ -9,7 +10,12 @@ import { useState } from 'react'
 import { Map } from './GoogleMap';
 import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
+import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
+import Chat from './Chat';
+
+
+
 
 export const App = () => {
     const { hoverItemId } = useAppState()
@@ -36,16 +42,16 @@ export const App = () => {
                     <GenderStyleContainer>
                         <GenderSelect />
                     </GenderStyleContainer>
-                    <Proximity />
+                    <ProxStyleContainer>
+                        <Proximity />
+                    </ProxStyleContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>
                 <ResultsChatContainer>
-                    <ResultsContainer>
-                        perfect
-                    </ResultsContainer>
+                    <Results />
                     <ChatContainer>
-                        ok
+                       <Chat />
                     </ChatContainer>
                 </ResultsChatContainer>
             </Column>

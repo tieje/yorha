@@ -196,14 +196,6 @@ export const ResultsChatContainer = styled.div`
     margin: 1rem;
     height: 90%;
 `
-export const ResultsContainer = styled.div`
-    display: flex;
-    background-color: yellow;
-    flex-grow: 1;
-    border: 1px solid black;
-    padding: 1rem;
-    margin: 1rem;
-`
 export const ChatContainer = styled.div`
     display: flex;
     background-color: cyan;
