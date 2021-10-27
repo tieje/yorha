@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ChatStyleContainer = styled.div`
@@ -9,7 +9,8 @@ font-family: 'Space Mono', monospace;
 flex-grow: 1;
 border: 1px solid black;
 padding: 1rem;
-margin: 1rem;
+margin: 3rem;
+height: 15vh;
 `;
 class Chat extends React.Component<any, any> {
     constructor(props:string){ 

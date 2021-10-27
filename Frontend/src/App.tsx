@@ -1,4 +1,4 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer } from './styles'
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';

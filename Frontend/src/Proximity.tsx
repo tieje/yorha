@@ -7,7 +7,7 @@ const ProxStyleContainer = styled.div`
     color: #FFEDE7;
     font-family: 'Space Mono', monospace;
     flex-grow: 1;
-    border: 1px solid black;
+    border: 1px solid #FFEDE7;
     padding: 1rem;
     margin: 1rem;
 `;
