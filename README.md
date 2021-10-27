@@ -52,7 +52,7 @@ Welcome to the technical documentation of project Semblance.
     - [Building the Frontend Core](#building-the-frontend-core)
     - [Features to Build and How to Build them](#features-to-build-and-how-to-build-them)
         - [Google Maps Location Marker](#google-maps-location-marker)
-        - [Transition to Apollo State Management](#transition-to-apollo-state-management)
+        - [Building the Production Version of the Frontend](#building-the-production-version-of-the-frontend)
         - [Limited ChatApp Core](#limited-chatapp-core)
 
         - Results Box
@@ -611,14 +611,66 @@ https://developers.google.com/maps/documentation/javascript/using-typescript
 
 This seems to work. google is now defined as a namespace.
 
-### Transition to Apollo State Management
+### Building the Production Version of the Frontend
 
-10/5/2021 - Afternoon
+10/19/2021
 
-I'll need to cut this short for now. I'll merge this branch with a new one.
-I'm on the new branch now called ft-complete-user-model because before I can even update the
-state management system, I'll need to get down the user model first.
-I won't be returning to this for a while.
++ run yarn build in frontend folder
+- create additional production.yml file and docker command that installs nginx and configures nginx
+    Command
+docker-compose -f docker-compose.yml -f production.yml up -d --build
+
+I'm going to need to run the custom production command from the jelastic ssh gate.
+https://docs.jelastic.com/ssh-access/?utm_source=blog-docker-engine-part2
+Rather than using the ssh gate, I'll just use the built-in webssh cuz I don't really want to deal with ssh keys right now.
+The webssh is down. It looks like I'll need to do it the hard way.
+
+It looks like I'll get remote connection available when I get the paid version.
+It looks like I should be able to run a custom docker-compose command if I really need, which I will be doing.
+
+Worst case scenario, I'll be hosting the site from laptop.
+
+I'm not going to use the docker override file name because I won't want to override it every time.
+
+https://medium.com/softonic-eng/docker-compose-from-development-to-production-88000124a57c
+
+This is somewhat helpful.
+
+https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
+
+This guide is very helpful. I think it answers a lot of my questions. The only problem is learning how to use nginx properly. I should spend the rest of today and the rest of tomorrow figuring out nginx.
+
+https://docs.docker.com/compose/extends/#different-environments
+According to this, docker-compose.override.yml is supposed to be the dev configuration that is used by default when docker-compose up is normally run.
+
+We don't actually need a production.yml since if specify
+`docker-compose -f docker-compose.yml`
+This command will not run the docker-compose.override.yml file as would normally occur.
+
+There might need to be two different files.
+- running the application locally using commands like npm start or manage.py runserver
+- running the production build of the application from nginx and gunicorn containers
+
+There is a reason why its suggested to have three files though. Not all commands are going to be same.
+
+docker-compose up will read the normal docker-compose.yml and the docker-compose.override.yml files. For the production command above, docker-compose will read the base file and then the production file for the production build.
+
+I'm going to need to get good at docker again...
++ created the docker-compose.override.yml file
+    + it works as intended
+- create the production.yml file
+    - https://ashwin9798.medium.com/nginx-with-docker-and-node-js-a-beginners-guide-434fe1216b6b
+    - According to the guide, I should create an entirely separate docker container that handles nginx functions, which makes sense.
+
+Right now, I just need to learn how to use nginx. The other concepts are easy enough. Even configuring the docker compose for production is easy enough.
+
+from this search, I'm looking up nginx stuff
+https://duckduckgo.com/?q=nginx+tutorial&ia=web
+
+I'm going to need to do quite a bit of reading on nginx. I'll probably even install it locally.
+
+~~ nginx grind ~~
+
 
 
 ### Limited ChatApp Core

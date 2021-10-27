@@ -2,54 +2,18 @@ version: '3.9'
 
 services:
   backend:
-    build: ./backend
-    image: backend:1
+    build: ./Backend
+    image: tieje/backend:latest
     # "manage.py" is the default Django app management tool. `runserver` starts the development server on the specified host and port using Django's built-in webserver.
     # Django's development server is not suitable for production; you'll need to replace the command with either gunicorn, nginx, or heroku at some point just before production
-    command: python manage.py runserver 0.0.0.0:8000
-    # the volume is a bind mount, meaning whatever changes we make on the host machine will be reflected in the host container
-    # [source]:[target] Meaning, that the backend folder in the container is bind mounted to the backend directory
-    volumes:
-      - ./backend:/backend
-    # the ports are [host]:[container] . This means that the host machine will be listening to 8000 port and the container will be listening to the 8000 port as well.
-    # https://docs.docker.com/compose/compose-file/compose-file-v3/#ports
-    ports:
-      - 8000:8000
-    # depends on means that the db service will be started before the backend service
-    depends_on:
-      - db
-  db:
-    platform: linux/amd64
-    # 12 is used instead of 13 due to post-gis docker documentation
-    image: postgis/postgis
-    environment:
-      # By default, PostgreSQL databases are named the same as the user which creates them. If the user exists, then the db is named after the user. To keep it simple, it's best to name one or the other.
-      # Because there are workarounds required when the user is named other than postgres, to keep things simple, I'll just use the default user and make sure there is a good password.
-      - POSTGRES_USER=postgres
-      # Required parameter. "trust" authentication is set up locally, so no password. Will need this password when contacted outside container, so it will be needed from the django settings file
-      - POSTGRES_PASSWORD=taliyah
-      # By default this is md5, which is the "intermediate" form of security available. I should consider upgrading to scram_sha256 later as it is the most secure.
-      # https://www.postgresql.org/docs/current/auth-password.html
-      # POSTGRES_HOST_AUTH_METHOD
-    volumes:
-      # the name of the host source container is postgres_data. The container-destination is the second part. This will be where the data will be stored on my local machine.
-      - postgres_data:/var/lib/postgresql/data/
-    ports:
-      - 5432:5432
+    env_file:
+      - ./Backend/env/.env.dev
   frontend:
     build: ./Frontend/
-    image: frontend:1
-    command: ["npm", "start"]
-    volumes:
-      - ./Frontend:/Frontend
-    ports:
-      - 3000:3000
+    image: tieje/frontend:latest
     depends_on:
       - backend
-  # for when the time comes.
-  # the book says we need a volume within the db service and a volume outside of the db service...
-      # it's totally possible to just create a new volume every time, but it's simple extension of code to make it so that the volume is available to multiple services.
-      # For example, what if we wanted another container that backs up the data of the volume?
-      # https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference
-volumes:
-  postgres_data:
+  # For when the time comes. The book says we need a volume within the db service and a volume outside of the db service...
+  # it's totally possible to just create a new volume every time, but it's simple extension of code to make it so that the volume is available to multiple services.
+  # For example, what if we wanted another container that backs up the data of the volume?
+  # https://docs.docker.com/compose/compose-file/compose-file-v3/#volume-configuration-reference

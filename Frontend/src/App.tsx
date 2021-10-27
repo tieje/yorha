@@ -7,7 +7,7 @@ import { useAppState } from './state/AppStateContext';
 import { ArchetypeDescription } from './ArchetypeDescription';
 import { useState } from 'react'
 import { Map } from './GoogleMap';
-import GenderSelect  from './Gender';
+import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
 import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
@@ -16,7 +16,7 @@ import ChatStyleContainer from "./Chat";
 
 export const App = () => {
     const { hoverItemId } = useAppState()
-    const [ hoverId, setHoverId] = useState(hoverItemId)
+    const [hoverId, setHoverId] = useState(hoverItemId)
     const updateArchId = (id: string): void => {
         setHoverId(id)
     }
@@ -24,9 +24,9 @@ export const App = () => {
         <AppContainer>
             <Column>
                 <ArchetypeHorizontalContainer>
-                    <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId}/>
+                    <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId} />
                     <ArchetypesChosen>
-                        <ArchetypeDescription id={hoverId}/>
+                        <ArchetypeDescription id={hoverId} />
                         <ArchetypesChosenList />
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
@@ -38,10 +38,10 @@ export const App = () => {
                     </MapContainer>
                     <GenderStyleContainer>
                         <GenderSelect />
-                    </GenderStyleContainer>
+                  </GenderStyleContainer>
                     <ProxStyleContainer>
                         <Proximity />
-                    </ProxStyleContainer>
+                  </ProxStyleContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>
