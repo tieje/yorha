@@ -22,3 +22,6 @@ frontend/yarn-error.log*
 .DS_Store
 .env*
 __pycache__/
+
+# Backend
+**migrations/
