@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Map } from './GoogleMap';
 import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
+import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
 
 export const App = () => {
@@ -35,8 +36,10 @@ export const App = () => {
                     </MapContainer>
                     <GenderStyleContainer>
                         <GenderSelect />
-                    </GenderStyleContainer>
-                    <Proximity />
+                  </GenderStyleContainer>
+                    <ProxStyleContainer>
+                        <Proximity />
+                  </ProxStyleContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>
