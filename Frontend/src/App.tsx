@@ -43,7 +43,7 @@ export const App = () => {
                     </MapContainer>
                     <GenderStyleContainer>
                         <GenderSelect />
-                  </GenderStyleContainer>
+                    </GenderStyleContainer>
                     <ProxStyleContainer>
                         <Proximity />
                   </ProxStyleContainer>

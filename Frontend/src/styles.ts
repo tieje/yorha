@@ -228,9 +228,6 @@ export const ResultsContainer = styled.div`
     background-color: #3E4046;
     flex-grow: 1;
     border: 1px solid #FFED7;
-    padding: 1rem;
-    margin: 1rem;
-    height: 65vh;
 `
 // export const ChatContainer = styled.div`
 //     display: flex;
