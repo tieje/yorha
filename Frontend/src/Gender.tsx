@@ -34,13 +34,14 @@ GenderStyleContainer=styled.div`
   color: #FFEDE7;
   font-family: 'Space Mono', monospace;
   flex-grow: 1;
-  border: 1px solid black;
+  border: 1px solid #FFEDE7;
   padding: 1rem;
-  margin: 1rem;
+  margin: .8rem;
 `
 GenderInput=styled.input`
   cursor: pointer;
 `
+
 handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
   formSubmitEvent.preventDefault();
   console.log('Pronouns selected: ', this.state.selectedOption);
@@ -95,7 +96,7 @@ handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
           </label>
           </div>
           <div className="form-group">
-            <button className="btn btn-primary mt-2" type="submit">
+            <button type="submit">
               Submit
             </button>
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const ChatStyleContainer = styled.div`
@@ -7,9 +7,14 @@ background-color: #3E4046;
 color: #FFEDE7;
 font-family: 'Space Mono', monospace;
 flex-grow: 1;
-border: 1px solid black;
-padding: 1rem;
-margin: 1rem;
+border: 1px solid #6FAD1D;
+padding: .5rem;
+margin: .5rem;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+height: 10vh;
+width: 40vw;
 `;
 class Chat extends React.Component<any, any> {
     constructor(props:string){ 

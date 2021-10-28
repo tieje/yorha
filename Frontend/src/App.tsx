@@ -1,5 +1,4 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, ChatContainer, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer} from './styles'
-import { Results } from './Results';
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer, MapChatSecondContainer, ArchetypeContainer } from './styles'
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
@@ -12,9 +11,9 @@ import GenderSelect from './Gender';
 import GenderStyleContainer from './Gender';
 import ProxStyleContainer from './Proximity';
 import Proximity from './Proximity';
+import ChatStyleContainer from './Chat';
 import Chat from './Chat';
-
-
+import Results from './Results'; 
 
 
 export const App = () => {
@@ -26,6 +25,7 @@ export const App = () => {
     return (
         <AppContainer>
             <Column>
+            <ArchetypeContainer>
                 <ArchetypeHorizontalContainer>
                     <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId} />
                     <ArchetypesChosen>
@@ -33,9 +33,11 @@ export const App = () => {
                         <ArchetypesChosenList />
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
+            </ArchetypeContainer>
             </Column>
             <Column>
                 <MapProximityGenderSettingsContainer>
+                    <MapChatSecondContainer>
                     <MapContainer>
                         <Map />
                     </MapContainer>
@@ -44,15 +46,20 @@ export const App = () => {
                     </GenderStyleContainer>
                     <ProxStyleContainer>
                         <Proximity />
-                    </ProxStyleContainer>
+                  </ProxStyleContainer>
+                  </MapChatSecondContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>
                 <ResultsChatContainer>
-                    <Results />
-                    <ChatContainer>
-                       <Chat />
-                    </ChatContainer>
+                    <ResultsContainer>
+                        <Results />
+                    </ResultsContainer>
+                    <ResultsContainer>
+                    <ChatStyleContainer>
+                    <Chat />
+                    </ChatStyleContainer>
+                    </ResultsContainer>
                 </ResultsChatContainer>
             </Column>
         </AppContainer>
