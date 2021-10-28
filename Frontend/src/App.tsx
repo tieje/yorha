@@ -55,9 +55,11 @@ export const App = () => {
                     <ResultsContainer>
                         <Results />
                     </ResultsContainer>
+                    <ResultsContainer>
                     <ChatStyleContainer>
                     <Chat />
                     </ChatStyleContainer>
+                    </ResultsContainer>
                 </ResultsChatContainer>
             </Column>
         </AppContainer>

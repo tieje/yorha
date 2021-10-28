@@ -17,7 +17,6 @@ export const ColumnContainer = styled.div`
     background-color: #3E4046;
     border-radius: 10px;
     border: 1px solid #FFEDE7;
-    // border: 1px solid black;
     height: 100vh;
     flex-grow: 1;
     margin: 0.5rem;
@@ -221,8 +220,8 @@ export const ResultsChatContainer = styled.div`
     flex-grow: 1;
     padding: 1rem;
     margin: 1rem;
-    height: 80vh;
-    width: 100vw;
+    height: 60vh;
+    width: 70vw;
 `
 export const ResultsContainer = styled.div`
     display: flex;
