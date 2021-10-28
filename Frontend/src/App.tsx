@@ -1,4 +1,4 @@
-import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer } from './styles'
+import { AppContainer, ArchetypeHorizontalContainer, ArchetypesChosen, MapContainer, MapProximityGenderSettingsContainer, ResultsChatContainer, ResultsContainer, MapChatSecondContainer, ArchetypeContainer } from './styles'
 import { ArchetypesList } from './ArchetypesList';
 import { ArchetypesChosenList } from './ArchetypesChosenList'
 import { Column } from './Column';
@@ -15,6 +15,7 @@ import ChatStyleContainer from './Chat';
 import Chat from './Chat';
 import Results from './Results'; 
 
+
 export const App = () => {
     const { hoverItemId } = useAppState()
     const [hoverId, setHoverId] = useState(hoverItemId)
@@ -24,6 +25,7 @@ export const App = () => {
     return (
         <AppContainer>
             <Column>
+            <ArchetypeContainer>
                 <ArchetypeHorizontalContainer>
                     <ArchetypesList key={Math.floor(Math.random() * 100)} updateArchId={updateArchId} />
                     <ArchetypesChosen>
@@ -31,9 +33,11 @@ export const App = () => {
                         <ArchetypesChosenList />
                     </ArchetypesChosen>
                 </ArchetypeHorizontalContainer>
+            </ArchetypeContainer>
             </Column>
             <Column>
                 <MapProximityGenderSettingsContainer>
+                    <MapChatSecondContainer>
                     <MapContainer>
                         <Map />
                     </MapContainer>
@@ -43,6 +47,7 @@ export const App = () => {
                     <ProxStyleContainer>
                         <Proximity />
                   </ProxStyleContainer>
+                  </MapChatSecondContainer>
                 </MapProximityGenderSettingsContainer>
             </Column>
             <Column>

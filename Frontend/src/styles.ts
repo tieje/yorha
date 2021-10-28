@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const AppContainer = styled.div`
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
     height: 100%;
     width: auto;
@@ -14,14 +14,19 @@ export const AppContainer = styled.div`
 
 export const ColumnContainer = styled.div`
     display: flex;
-    background-color: #65C44F;
+    background-color: #3E4046;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid #FFEDE7;
+    // border: 1px solid black;
     height: 100vh;
     flex-grow: 1;
     margin: 0.5rem;
     padding: 1rem;
     max-width: 100%;
+    justify-content:center;
+`
+export const ArchetypeContainer = styled.div`
+    width: 80vw;
 `
 
 export const ArchetypeListContainer = styled.div`
@@ -29,10 +34,9 @@ export const ArchetypeListContainer = styled.div`
     margin: 1rem;
     height: 85%;
     padding 1rem;
-    min-width: 100px;
+    // width: 90vw;
 `
-export const ArchetypeContainer = styled.div`
-`
+
 
 export const ArchetypeListItemContainer = styled.div`
     background-color: #3E4046;
@@ -44,15 +48,15 @@ export const ArchetypeListItemContainer = styled.div`
     display: flex;
     flex-direction: column;
     height: 5vh;
-    width: 100%;
+    width: 8vw;
     border: 1px solid #FFEDE7;
 `
 export const ArchetypeHorizontalContainer = styled.div`
     display: flex;
     flex-direction: row;
     background-color: #3E4046;
-    border: 1px solid #FFEDE7;
     height: 100%;
+    width: 30vw;
     flex-grow: 1;
 `
 
@@ -60,38 +64,43 @@ export const ArchetypesDescriptionContainer = styled.div`
     display: flex;
     background-color: #3E4046;
     flex-grow: 1;
-    margin: 3px;
-    margin-bottom: 0;
+    // margin: 3px;
+    // margin-bottom: 0;
     padding: 3px;
-    height: 100vh;
+    height: 40vh;
+    width: 65vw;
 `
 export const ArchetypesChosen = styled.div`
     display: flex;
-    background-color: #3E4046;
+    // background-color: white;
     flex-direction: column;
     flex-grow: 1;
     height: 50vh;
+    width: 80vw;
+    
 `
-
+// make this scrollable
 export const ArchetypeDescriptionItemContainer = styled.div`
     display: flex;
     background-color: #3E4046;
     flex-grow: 1;
-    margin: 10px;
+    // margin: 10px;
     padding: 10px;
     flex-direction: column;
-    height: 20vh;
+    height: 25vh;
+    width: 30vw;
 `
 export const ArchetypeDescriptionName = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #3E4046;
     color: #FFEDE7;
-    margin: 1rem;
-    padding 1rem;
-    height: 5vh;
+    // margin: 1rem;
+    padding .8rem;
+    height: 3vh;
 
 `
+//make scrollable? or add padding
 export const ArchetypeDescriptionPayload = styled.div`
     display: flex;
     border: 1px solid #FD5C06;
@@ -99,6 +108,7 @@ export const ArchetypeDescriptionPayload = styled.div`
     flex-grow: 1;
     margin: 10px;
     padding 10px;
+    font-size: 13px;
     overflow-wrap: break-word;
     height: 5vh;
 `
@@ -107,73 +117,81 @@ export const ArchetypesChosenListContainer = styled.div`
     display: flex;
     flex-direction: column;
     flex-grow; 1;
-    background-color: red;
-    border: 1px solid black;
+    background-color: #3E4046;
+    // border: 1px solid black;
     padding: 3px;
     margin: 3px;
-    height: 30vh;
+    height: 20vh;
 `
 export const ArchetypesChosenColumnContainer = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: green;
+    background-color: #3E4046;
     flex-grow: 1;
     padding: 3px;
     margin: 3px;
-    height: 30vh;
+    height: 8vh;
 `
 export const ArchetypesChosenColumnHeaderContainer = styled.div`
     display: flex;
-    background-color: green;
+    background-color: #3E4046;
+    align-items: center;
     flex-grow: 1;
-    border: 1px solid black;
+    // border: 1px solid black;
     padding: 3px;
+    height: 7vh;
 `
 export const ArchetypesChosenColumnHeader = styled.div`
     display: flex;
-    background-color: blue;
+    background-color: ##E4046;
+    color: #FFEDE7;
     flex-grow: 1;
-    border: 1px solid black;
-    padding: 5px;
-    margin: 3px;
+    font-size: 12px;
+    // border: 1px solid black;
+    padding: .5rem;
+    // margin: 1rem;
     overflow-wrap: break-word;
-    width: 50px;
-    height: 20vh;
-    align-items: center;
-    justify-content: center;
+    width: 3vw;
+    height: 7vh;
+    // align-items: center;
+    // justify-content: center;
 `
 export const ArchetypesChosenArchetypesListContainer = styled.div`
     display: flex;
-    flex-direction: column;
-    background-color: cyan;
+    flex-direction: row;
+    background-color: #3E4046;
+    font-size: 12px;
     flex-grow: 8;
-    border: 1px solid black;
+    // border: 1px solid #FFEDE7;
     padding: 3px;
     margin: 3px;
 `
 export const ArchetypesChosenArchetypeNameContainer = styled.div`
     display: flex;
-    background-color: white;
+    background-color: #3E046;
+    color: #FFEDE7;
     flex-grow: 4;
-    border: 1px solid black;
+    border: 1px solid #FFEDE7;
     padding: 3px;
     margin: 3px;
+    
 `
 export const ArchetypesListItemDelete = styled.button`
     display: flex;
-    background-color: red;
+    background-color: #7A74E9;
     flex-grow: 1;
-    border: 1px solid black;
+    color: #FFEDE7;
+    // border: 1px solid black;
     padding: 3px;
     margin: 3px;
+    height: 3vh;
     justify-content: center;
     align-items: center;
 `
 export const ArchetypesChosenButtonCombiner = styled.div`
     display: flex;
-    background-color: yellow;
+    background-color: #3E4046;
     flex-grow: 1;
-    border: 1px solid black;
     padding: 3px;
     margin: 3px;
 `
@@ -184,9 +202,9 @@ export const MapProximityGenderSettingsContainer = styled.div`
     flex-grow: 1;
     border: 1px solid #FFED7;
     padding: 1rem;
-    margin: 1rem;
+    margin: .8rem;
     height: 90vh;
-    width: 100vw;
+    width: 60vw;
 `
 export const MapContainer = styled.div`
     display: flex;
@@ -240,6 +258,13 @@ export const LoadingError = styled.div`
     padding: 1rem;
     margin: 1rem;
 `
-export const Button = styled.button`
-    color: red;
-`
+export const MapChatSecondContainer =styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: #3E4046;
+    flex-grow: 1;
+    margin: 1rem;
+    height: 55vh;
+    width: 40vw;
+    font-family: 'Space Mono', monospace;
+    `

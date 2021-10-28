@@ -35,8 +35,8 @@ GenderStyleContainer=styled.div`
   font-family: 'Space Mono', monospace;
   flex-grow: 1;
   border: 1px solid #FFEDE7;
-  padding: 2rem;
-  margin: 2rem;
+  padding: 1rem;
+  margin: .8rem;
 `
 GenderInput=styled.input`
   cursor: pointer;
