@@ -42,16 +42,14 @@ services:
   frontend:
     volumes:
       - ./Frontend:/frontend
-    command: serve -s build
+    command: serve -l 5001 -s build
     container_name: prod-frontend
     ports:
-      - 5000:5000
+      - 5001:5001
     depends_on:
       - backend
     networks:
       - default
-    expose:
-      - "5000"
   # for when the time comes.
   # the book says we need a volume within the db service and a volume outside of the db service...
       # it's totally possible to just create a new volume every time, but it's simple extension of code to make it so that the volume is available to multiple services.

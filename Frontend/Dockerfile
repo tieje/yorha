@@ -19,4 +19,4 @@ RUN npm run build
 ENV PATH /frontend/node_modules/.bin:$PATH
 # Not sure if exposing is going to help at all
 EXPOSE 3000
-EXPOSE 5000
+EXPOSE 5001
