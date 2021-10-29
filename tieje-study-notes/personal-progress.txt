@@ -84,3 +84,28 @@ I'll worry about those later.
 For now, I'll need to rip out the useReducer() state manager with Apollo.
 It's a monster of my own creation, but it's an opponent worthy of my final week prior to presentation.
 
+10/28/2021
+
+I'd like to get out one feature per week at a working cap of 4 hours per day working on the application.
+Things I'll need to work on:
+
+1. Change the state management system to Apollo
+2. Set up graphql queries to the backend.
+3. Find and set up a 3rd-party database service that you'd like to use for django
+4. Create application data.
+5. Make Gender component stateful.
+6. Add a second gender component for whoever you're looking for.
+7. Make Proximity component stateful.
+8. Results Component
+9. Chat component
+10. Host site online. Learn about networking.
+11. Add SSL certificate.
+12. ufw security
+13. HAproxy or nginx load-balancing.
+14. Login page, logout page, forgot password page, forgot username page, user authentication and emails.
+15. Google maps cluster results (if you can).
+16. Incorporate Stripe payment services.
+17. Improve CSS
+18. Marketing
+19. Write jest, cypress, and django tests
+
