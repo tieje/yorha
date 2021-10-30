@@ -109,3 +109,6 @@ Things I'll need to work on:
 18. Marketing
 19. Write jest, cypress, and django tests
 
+10/29/2021
+
+I'm going to set up my RPIs for web hosting.
