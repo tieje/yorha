@@ -1,0 +1,89 @@
+10/29/2021
+
+Setting up 2 rpis to serve a docker swarm.
+Ansible will be used to set up the rpis.
+    - Install git
+    - Clone this repo and switch to the correct branch of development.
+    - Install docker, docker tools, and the visualizer
+    - Create a docker swarm. Docker swarm handles automated load-balancing
+    - Set up ufw firewall on the nginx container
+    - set up your router to forward to your address
+    - set up your domain with no-ip service to forward to your address
+    - set up postgreSQL db locally and replicate all data across all nodes (max 3 replications)
+
+
+https://howchoo.com/g/njy4zdm3mwy/how-to-run-a-raspberry-pi-cluster-with-docker-swarm
+
+I'll need to learn the following:
+
+- Ansible
+    https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
+    https://www.tutorialspoint.com/ansible/index.htm
+- Docker Swarm
+    https://docs.docker.com/engine/swarm/
+- ufw firewall
+    https://www.linux.com/training-tutorials/introduction-uncomplicated-firewall-ufw/
+- postgreSQL replication
+    https://www.postgresql.org/docs/13/runtime-config-replication.html
+    https://www.section.io/engineering-education/how-to-replicate-postgresql-database/
+- postgreSQL backup
+    https://www.postgresql.org/docs/9.1/backup-file.html
+
+I'm going to start with Ansible.
+https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
+
+1. I'll need to run a script that installs Ansible and then have Ansible run a separate script.
+It runs over SSH protocol by default so I don't need to install ansible, but I will need to add my key through a script.
+https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+The main user guide:
+https://docs.ansible.com/ansible/latest/user_guide/index.html
+Ansible galaxy library collection:
+https://galaxy.ansible.com/
+ssh into rpi after adding ~/.ssh/authorized_keys
+https://thepi.io/how-to-ssh-into-the-raspberry-pi/
+getting started
+https://docs.ansible.com/ansible/latest/user_guide/intro_getting_started.html
+Ansible command not found
+https://stackoverflow.com/questions/63177609/zsh-command-not-found-ansible-after-pip-installing
+My ansible can be found at:
+ansible --version
+/Users/thomasfrancis/.local/bin/ansible
+Trying to run the correct ansible command
+https://docs.ansible.com/ansible/latest/reference_appendices/general_precedence.html#general-precedence-rules
+I need to supply a password
+# ansible -u pi -i /Users/thomasfrancis/Documents/ansible/hosts -m ping all --ask-pass -c paramiko
+    # does not work
+Because I'll need to supply a password for my servers, I'll just create a playbook and connect that way inste
+ad.
+https://docs.ansible.com/ansible/latest/user_guide/connection_details.html#connections
+Decide how you're going to pass in credentials.
+
+
+rpi1
+hostname -I
+192.168.1.33
+192.168.1.34
+public Ip
+96.32.2.83
+ssh pi@192.168.1.33
+ssh pi@192.168.1.34
+either one works
+
+rpi2
+hostname -I
+192.168.1.35
+192.168.1.36
+public Ip
+96.32.2.83
+ssh pi@192.168.1.35
+ssh pi@192.168.1.36
+either one works
+
++ installed ansible on my mac
++ generate rpi ssh key
++ make draft email on gmail with public ssh key. Copy and paste onto the RPIs
++ removed other versions of python
++ add ansible to path in .zshrc
+
+10/30/2021
+
