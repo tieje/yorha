@@ -53,8 +53,7 @@ https://docs.ansible.com/ansible/latest/reference_appendices/general_precedence.
 I need to supply a password
 # ansible -u pi -i /Users/thomasfrancis/Documents/ansible/hosts -m ping all --ask-pass -c paramiko
     # does not work
-Because I'll need to supply a password for my servers, I'll just create a playbook and connect that way inste
-ad.
+Because I'll need to supply a password for my servers, I'll just create a playbook and connect that way instead.
 https://docs.ansible.com/ansible/latest/user_guide/connection_details.html#connections
 Decide how you're going to pass in credentials.
 
@@ -85,5 +84,90 @@ either one works
 + removed other versions of python
 + add ansible to path in .zshrc
 
-10/30/2021
+10/31/2021
 
+I'm going to disable password authentication for the servers.
+https://linuxize.com/post/how-to-setup-passwordless-ssh-login/
+It seems like it's more secure since key-based authentication relies on cracking the passphrase on your personal key.
+https://serverfault.com/questions/334448/why-is-ssh-password-authentication-a-security-risk
+I'm gonna add an ssh private key to my mac OS
+https://fplanque.com/dev/mac/secure-ssh-private-keys-on-mac-osx-10-5
+This worked in solving the password problem. I won't need to enter a password anymore.
+Use the --become flag to sudo commands.
+
+
+ssh pi@192.168.1.35
+ssh pi@192.168.1.33
+
++ register ssh private key with my mac
+    ssh-add -k ~/.ssh/rpi
++ ping -m all command on provided inventory
+    ansible -u pi -i ~/Documents/yorha/rpi-hosting/hosts -m ping all
++ use a live command on all nodes
+    ansible -u pi -i ~/Documents/yorha/rpi-hosting/hosts all -a "/bin/ls"
+    # -a is for module arguments
++ change default ansible_python_interpreter from python to python3 as an inventory variable
+    https://docs.ansible.com/ansible-core/2.11/reference_appendices/interpreter_discovery.html
+    https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#adding-variables-to-inventory
++ set up and run an example ansible playbook
+    ansible-playbook ~/Documents/yorha/rpi-hosting/tasks/hello-task.yml -u pi -i ~/Documents/yorha/rpi-hosting/hosts
++ print file name that was created
+    /bin/bash ~/Documents/yorha/rpi-hosting/tasks/print-ls-hello-command.sh
++ delete the hello file that was created
+    ansible-playbook ~/Documents/yorha/rpi-hosting/tasks/delete-hellofiles.yml -u pi -i ~/Documents/yorha/rpi-hosting/hosts
++ test if file exist (it should not)
++ edit default inventory on mac
+    I'm going to export the ansible hosts variable to my hostfile for. I'll change this in the future.
+    https://stackoverflow.com/questions/21958727/where-to-store-ansible-host-file-on-mac-os-x
+    ansible -i $ANSIBLE_HOSTS -m ping all
+    I'll do it this way for now for clarity.
++ Set up pyenv correctly... again
+    https://opensource.com/article/20/4/pyenv
++ create user thomasfrancis using ansible playbook
+    https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
+    https://serversforhackers.com/c/create-user-in-ansible
+    I'll need to set up a password, otherwise I won't be able to log in remotely.
+    https://unix.stackexchange.com/questions/108562/is-there-some-default-password-for-a-new-user-in-linux
+    Delete user
+    https://linuxize.com/post/how-to-delete-users-in-linux-using-the-userdel-command/
+    https://docs.ansible.com/ansible/2.3/user_module.html
+    I'll need to encrypt the password upon creation.
+    https://www.edureka.co/community/83388/warning-appears-hashed-argument-encrypted-module-properly
+    I'll need to install passlib python module.
+    Error: crypt.crypt not supported on Mac OS X/Darwin, install passlib python module. crypt.crypt not supported on Mac OS X/Darwin, install passlib python module
+    I needed to install passlib locally on my mac, not on the target machine
+    It works. User thomasfrancis has the same groups as pi and the same authorized_keys so no password needed to login and I don't need to use -u pi anymore as flag.
+    The base commands will be the following from now on:
+    ansible -i $ANSIBLE_HOSTS all
+    ansible $ANSIBLE_TASKS/[playbook] -i $ANSIBLE_HOSTS
+
+11/1/2021
+
+- use an ansible playbook to setup git config
+    - set up gh client
+    - username
+    - email
+    - pass key
+- create playbook that clones your git repo for semblance
+- create a playbook that install docker
+- create a playbook that logs into docker as your account
+- create a playbook that runs your docker containers
+- create a playbook that install postgresql
+- create a playbook that creates the user necessary for docker
+- create a playbook that creates the database and starting data ONLY ON ONE NODE
+- create a playbook that replicates this data from one database to another
+
+=============
+BASE COMMANDS
+=============
+ansible -i $ANSIBLE_HOSTS all 
+ansible $ANSIBLE_TASKS/[playbook] -i $ANSIBLE_HOSTS
+
+===============
+COMMON COMMANDS
+===============
+ssh thomasfrancis@192.168.1.33
+ssh thomasfrancis@192.168.1.35
+sudo shutdown now
+ansible -i $ANSIBLE_HOSTS all -m ping
+sudo shutdown -r now
