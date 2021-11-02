@@ -143,11 +143,14 @@ ssh pi@192.168.1.33
 
 11/1/2021
 
-- use an ansible playbook to setup git config
-    - set up gh client
-    - username
-    - email
-    - pass key
+
+- use an ansible playbook to setup git config. I'll need it because I'll be cloning from a private repo.
+    Looks like I'll use a plugin.
+    https://docs.ansible.com/ansible/latest/collections/community/general/git_config_module.html
+        + ansible-galaxy collection install community.general
+            # already installed
+    
+
 - create playbook that clones your git repo for semblance
 - create a playbook that install docker
 - create a playbook that logs into docker as your account
