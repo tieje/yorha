@@ -2,15 +2,13 @@
 
 Setting up 2 rpis to serve a docker swarm.
 Ansible will be used to set up the rpis.
-    - Install git
-    - Clone this repo and switch to the correct branch of development.
-    - Install docker, docker tools, and the visualizer
-    - Create a docker swarm. Docker swarm handles automated load-balancing
+    x Install git
+    + Clone this repo
+    - Install docker, docker tools, and the visualizer. Create a docker swarm. Docker swarm handles automated load-balancing
+    - create postgreSQL db and a backup on the second server
     - Set up ufw firewall on the nginx container
-    - set up your router to forward to your address
+    - set up your router to forward to your ip address
     - set up your domain with no-ip service to forward to your address
-    - set up postgreSQL db locally and replicate all data across all nodes (max 3 replications)
-
 
 https://howchoo.com/g/njy4zdm3mwy/how-to-run-a-raspberry-pi-cluster-with-docker-swarm
 
@@ -143,28 +141,46 @@ ssh pi@192.168.1.33
 
 11/1/2021
 
+11/2/2021
 
-- use an ansible playbook to setup git config. I'll need it because I'll be cloning from a private repo.
++ set up keychain access on Mac
+    https://support.apple.com/guide/keychain-access/what-is-keychain-access-kyca1083/mac
+    This warning came up:
+    The -K and -A flags are deprecated and have been replaced
+    by the --apple-use-keychain and --apple-load-keychain
+    flags, respectively.  To suppress this warning, set the
+    environment variable APPLE_SSH_ADD_BEHAVIOR as described in
+    the ssh-add(1) manual page.
+    This command worked for me:
+    ssh-add --apple-use-keychain ~/.ssh/rpi
++ use an ansible playbook to setup git config ==> I'll use a one-liner instead of setting up git config.
+    I'll need it because I'll be cloning from a private repo.
     Looks like I'll use a plugin.
     https://docs.ansible.com/ansible/latest/collections/community/general/git_config_module.html
         + ansible-galaxy collection install community.general
             # already installed
-    
+    Storing credentials is not the way.
+    Instead I'll run the username and password in the https request.
+    https://stackoverflow.com/questions/37841914/how-do-i-pass-username-and-password-while-using-ansible-git-module
+    What occurred instead is I used a one-liner https git clone repo with the username and password included.
+    This was definitely the simplest solution. I did not need to set up git config at all.
++ create a playbook that clones yorha repo and copies .env folders into their respective places
 
-- create playbook that clones your git repo for semblance
+
 - create a playbook that install docker
 - create a playbook that logs into docker as your account
-- create a playbook that runs your docker containers
+- create a playbook that runs your docker swarm
 - create a playbook that install postgresql
-- create a playbook that creates the user necessary for docker
+- create a playbook that creates the user on postgresql necessary for docker
 - create a playbook that creates the database and starting data ONLY ON ONE NODE
 - create a playbook that replicates this data from one database to another
+- edit django such that it interacts with the real db
 
 =============
 BASE COMMANDS
 =============
 ansible -i $ANSIBLE_HOSTS all 
-ansible $ANSIBLE_TASKS/[playbook] -i $ANSIBLE_HOSTS
+ansible-playbook $ANSIBLE_TASKS/[playbook] -i $ANSIBLE_HOSTS
 
 ===============
 COMMON COMMANDS
