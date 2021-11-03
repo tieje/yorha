@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+//styles the proximity selection container
 const ProxStyleContainer = styled.div`
     display: flex;
     background-color: #3E4046;
@@ -13,11 +13,13 @@ const ProxStyleContainer = styled.div`
 `;
 
 class Proximity extends React.Component<any, any> {
+    //constructs the class and sets the default proximity to 0
     state = {
         value: 0
     }
-    
+    //when the user changes a selection, this is reflected in the class
     handleOnChange = (e:any) => this.setState({ value: ((e.target as HTMLInputElement).value )})
+    //when the user submits, it passes the desired proximity value to the console log for further testing
     handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
         formSubmitEvent.preventDefault();
         console.log('Proximity set at: ', this.state.value);

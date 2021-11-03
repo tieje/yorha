@@ -1,20 +1,10 @@
-//feat-mvp: select out of the three top pronouns (he/she/they)(check)
-//each is an array in order: he/him/his (not attached yet to backend)
-//populated according to position in array? (not attached to backend)
-
-//bonus mode: options to add your own pronouns, paid feature to sort 
-//according to gender, (all non-standard being rolled into the "they" option, presented
-//as "other" or something like that? 
-
-
-//something like:
-import React, { Component } from 'react';
-import ReactDOM, { render } from 'react-dom';
+import { Component } from 'react';
 import styled from 'styled-components';
 
 
 class GenderSelect extends Component<any,any>{
-
+//constructs the gender selection class, default value for the options is an empty string.
+//types should be stronger
 
   constructor(props:string){
     super(props);
@@ -22,12 +12,13 @@ class GenderSelect extends Component<any,any>{
       selectedOption: ''
     };
     }
+    //when the user selects an option, it sets the state to pass the selected option string rather than an empty one
   handleOptionChange = (changeEvent: { target: { value: any; }; }) => {
   this.setState({
     selectedOption: changeEvent.target.value
   });
 }; 
-
+//styles the gender container
 GenderStyleContainer=styled.div`
   display: flex;
   background-color: #3E4046;
@@ -38,10 +29,11 @@ GenderStyleContainer=styled.div`
   padding: 1rem;
   margin: .8rem;
 `
+//styles the input--should be stronger and expanded
 GenderInput=styled.input`
   cursor: pointer;
 `
-
+//on submit it passes the selected option string to the console log for further testing 
 handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
   formSubmitEvent.preventDefault();
   console.log('Pronouns selected: ', this.state.selectedOption);
@@ -54,6 +46,7 @@ handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
         <p> Select pronouns:</p>
         <div className = "form-check">
           <label>
+            {/* does the heavy lifting of selecting and passing values */}
           <this.GenderInput
             type="radio" 
             name="gender-select"
@@ -110,6 +103,3 @@ handleFormSubmit = (formSubmitEvent: { preventDefault: () => void; }) => {
 export default GenderSelect;
 
 
-
-
-//to do: connect to backend 

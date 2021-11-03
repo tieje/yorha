@@ -1,5 +1,5 @@
 import styled from "styled-components"
-
+//old method of styling, to be coordinated to style within individual component .tsx files
 export const AppContainer = styled.div`
     display: flex;
     align-items: center;
