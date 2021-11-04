@@ -166,6 +166,21 @@ ssh pi@192.168.1.33
     This was definitely the simplest solution. I did not need to set up git config at all.
 + create a playbook that clones yorha repo and copies .env folders into their respective places
 
+11/3/2021
+I'll need to 
+
+11/4/2021
+I was tired yesterday. I kind of dreaded getting started on using ansible and docker.
+I've gotten a decent amount of work done in the past four days so I'm not mad about taking a day off.
+Today, I'd like to focus on building out Docker.
+I guess I was tired because I didn't actually eat anything in the morning. My body will get used to it.
+I have a lot of work I want to do so I might as well get serious about it. I'll text Mayenne this weekend.
+
+8:30 - 9am - get ready
+9 - 12pm - get work done (this includes exercising if you can)
+12pm - take out Bear
+2 - 5pm - work
+5 - 12am - socialize, play games
 
 - create a playbook that install docker
 - create a playbook that logs into docker as your account
@@ -175,6 +190,8 @@ ssh pi@192.168.1.33
 - create a playbook that creates the database and starting data ONLY ON ONE NODE
 - create a playbook that replicates this data from one database to another
 - edit django such that it interacts with the real db
+
+
 
 =============
 BASE COMMANDS
@@ -190,3 +207,10 @@ ssh thomasfrancis@192.168.1.35
 sudo shutdown now
 ansible -i $ANSIBLE_HOSTS all -m ping
 sudo shutdown -r now
+
+============
+EXPORT PATHS
+============
+
+export ANSIBLE_HOSTS="$HOME/Documents/yorha/rpi-hosting/hosts"
+export ANSIBLE_TASKS="$HOME/Documents/yorha/rpi-hosting/tasks"

@@ -3,12 +3,12 @@
   tasks:
     - name: clone yorha repo
       git:
-        repo: https://tieje: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@github.com/tieje/yorha.git
+        repo: https://tieje:[your-key]@github.com/tieje/yorha.git
         dest: /home/thomasfrancis/yorha
         clone: yes
     - name: clone semblance-secrets repo
       git:
-        repo: https://tieje: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@github.com/tieje/semblance-secrets.git
+        repo: https://tieje:[your-key]@github.com/tieje/semblance-secrets.git
         dest: /home/thomasfrancis/semblance-secrets
         clone: yes
     - name: copy semblance backend secrets to appropriate yorha folders

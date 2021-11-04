@@ -3,7 +3,7 @@
   tasks:
     - name: clone practice private repo
       git:
-        repo: https://tieje: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@github.com/tieje/private-clone-trial.git
+        repo: https://tieje:[your-key]@github.com/tieje/private-clone-trial.git
         dest: /home/thomasfrancis/private-clone-trial
         clone: yes
     - name: show folder
@@ -21,9 +21,6 @@
 
 
 # This token is fine to make public since it's only read-access
-# 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
-# https://tieje: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@github.com
-# https://tieje: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@github.com/tieje/private-clone-trial.git
 # to run this
 # ansible-playbook $ANSIBLE_TASKS/git-clone-practice-private-repo.yml -i $ANSIBLE_HOSTS
 # to check for repo
