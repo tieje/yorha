@@ -170,26 +170,69 @@ ssh pi@192.168.1.33
 I'll need to 
 
 11/4/2021
-I was tired yesterday. I kind of dreaded getting started on using ansible and docker.
-I've gotten a decent amount of work done in the past four days so I'm not mad about taking a day off.
-Today, I'd like to focus on building out Docker.
-I guess I was tired because I didn't actually eat anything in the morning. My body will get used to it.
-I have a lot of work I want to do so I might as well get serious about it. I'll text Mayenne this weekend.
 
-8:30 - 9am - get ready
-9 - 12pm - get work done (this includes exercising if you can)
-12pm - take out Bear
-2 - 5pm - work
-5 - 12am - socialize, play games
+3pm - currently stuck on how to resolve nginx and docker swarm
+https://www.nginx.com/blog/docker-swarm-load-balancing-nginx-plus/
+It looks like we'll be using virtual IPs from the swarm (VIPs)
+Because of the VIPs, it looks like nginx will be easier to configure and deploy with swarm.
+The main goal right now is to simply deploy the build version of only the frontend. This is to test if this even works.
+This is highly experimental and not production. However, there are certain things that I will keep in production from this experiment.
 
-- create a playbook that install docker
-- create a playbook that logs into docker as your account
-- create a playbook that runs your docker swarm
-- create a playbook that install postgresql
-- create a playbook that creates the user on postgresql necessary for docker
-- create a playbook that creates the database and starting data ONLY ON ONE NODE
-- create a playbook that replicates this data from one database to another
-- edit django such that it interacts with the real db
+Experimental:
+- docker hub frontend repo
+- nginx configuration
+Production:
+- docker swarm initialization
+- ufw settings
+- monitoring if its set up
+- semblance.us DNS configuration
+- no-ip DNS configuration
+
+I'll need to do these tasks in the following order:
+
+- fork the current yorha repo into a new semblance repo
+    # worry about the .env files later since you're only working with the frontend
+- edit nginx configuration to point to the VIP of the frontend
+    - study the nginx cookbook to determine what the configuration should look like
+    This is possible because the VIP of containers is not only predictable, but also configurable
+    https://docs.docker.com/engine/swarm/swarm-mode/
+    https://www.thepolyglotdeveloper.com/2017/05/load-balancing-docker-swarm-cluster-nginx-reverse-proxy/
+- upload only the nginx and frontend images to the docker hub repo
+    - learn how to update the docker hub repo image over time
+- use docker swarm on your rpis
+    https://docs.docker.com/get-started/orchestration/
+    https://docs.docker.com/get-started/swarm-deploy/
+    https://docs.docker.com/engine/swarm/
+    https://docs.docker.com/engine/swarm/key-concepts/
+    https://docs.docker.com/engine/swarm/swarm-tutorial/
+    I turns out that I will need ansible to install docker engine on the rpis. I wish I just studied docker swarm instead of using nginx.
+    https://docs.docker.com/engine/install/debian/
+    I will not be using Kubernetes due to its complexity.
+    https://www.ibm.com/cloud/blog/docker-swarm-vs-kubernetes-a-comparison
+    I think I'll use the guide below. 
+    https://howchoo.com/g/njy4zdm3mwy/how-to-run-a-raspberry-pi-cluster-with-docker-swarm
+    - create an ansible command that changes the hostname of rpis
+    https://howchoo.com/pi/how-to-change-the-hostname-of-your-raspberry-pi
+    - create a playbook that installs docker engine on each node
+    https://docs.docker.com/engine/install/debian/
+    - create an ansible command for docker swarm init
+    - copy the output for adding workers here
+    - create an ansible command that adds the visualizer
+- have semblance.us either point or forward to the no-ip address
+- have no-ip address point to the rpi IP address + the appropriate port/domain name
+
+Post-Experiment: Production build
+
+- get postgresql running on rpis using ansible
+    - create a playbook that installs postgresql
+    - create a playbook that creates the user on postgresql necessary for docker
+    - create a playbook that creates the database and starting data ONLY ON ONE NODE
+    - create a playbook that replicates this data from one database to another
+- edit the docker-compose configurations for development and production
+    - remove volumes from production
+- edit nginx container such that it will point to the backend container
+- edit the backend such that it interacts with a real db
+- upload the nginx and backend images to docker-hub
 
 
 
